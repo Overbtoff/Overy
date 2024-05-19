@@ -1535,7 +1535,7 @@ div.dataTables_wrapper div.dataTables_info {
 .user-header {
     background-color: #f9f9f9;
     display: flex;
-    padding: 10px 15px
+    padding: 10px 15px;
 }
 
 .user-header .user-text {
