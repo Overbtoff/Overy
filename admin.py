@@ -1,11 +1,20 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template,session
 
 admin = Blueprint('admin', __name__,static_folder='static')
 
 @admin.route('/')
 def index():
-    return render_template('index.html')
-
-@admin.route('/about')
-def about():
-    return render_template('about.html')
+    username= session['username']
+    return render_template('admin.html',username=username)
+@admin.route('/stulist')
+def stulist():
+    username= session['username']
+    return render_template('students.html',username=username)
+@admin.route('/tealist')
+def tealist():
+    username= session['username']
+    return render_template('teachers.html',username=username)
+@admin.route('/titlist')
+def titlist():
+    username= session['username']
+    return render_template('subjects.html',username=username)
