@@ -3,7 +3,7 @@ from admin import admin
 from teacher import teacher
 from student import student
 
-from dbconn import conn,cursor
+##from dbconn import conn,cursor
 
 app = Flask(__name__)
 app.secret_key = '6ragonPa5ace1n'
