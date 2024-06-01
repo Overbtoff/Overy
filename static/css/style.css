@@ -3084,7 +3084,7 @@ table.table-inbox tbody tr.checked {
 
     .navbar-nav .open .dropdown-menu {
         float: left;
-        position: absolute
+        position: absolute;
     }
 
     .navbar-nav.user-menu .open .dropdown-menu {

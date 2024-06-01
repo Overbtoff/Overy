@@ -3,7 +3,7 @@ from admin import admin
 from teacher import teacher
 from student import student
 
-# from dbconn import conn,cursor
+from dbconn import conn,cursor
 
 app = Flask(__name__)
 app.secret_key = '6ragonPa5ace1n'
@@ -54,6 +54,11 @@ def index():
                 session['username'] = username
                 session['role'] = 'admin'
                 return redirect(url_for('admin.index'))
+            if username[0]=='2':
+                session['logged_in'] = True
+                session['username'] = username
+                session['role'] = 'teacher'
+                return redirect(url_for('teacher.index'))
         else:
             return render_template('login.html')
 

@@ -15,11 +15,11 @@
 <body><!-- Main Wrapper -->
 <div class="main-wrapper"><!-- Header -->
     <div class="header"><!-- Logo -->
-        <div class="header-left"><a href="{{url_for('index')}}" class="logo"><img src="static/picture/logo1.png" alt="Logo"></a><a
-                href="{{url_for('index')}}" class="logo logo-small"><img src="static/picture/logo-small1.png" alt="Logo" width="30"
+        <div class="header-left"><a href="index.html" class="logo"><img src="static/picture/logo1.png" alt="Logo"></a><a
+                href="index.html" class="logo logo-small"><img src="static/picture/logo-small1.png" alt="Logo" width="30"
                                                                height="30"></a></div><!-- /Logo --><a
                 href="javascript:void(0);" id="toggle_btn"><i class="fas fa-align-left"></i></a><!-- Search Bar -->
-        <!-- /Search Bar --><!-- Mobile Menu Toggle --><a class="mobile_btn" id="mobile_btn"><i
+       <!-- /Search Bar --><!-- Mobile Menu Toggle --><a class="mobile_btn" id="mobile_btn"><i
                 class="fas fa-bars"></i></a><!-- /Mobile Menu Toggle --><!-- Header Right Menu -->
         <ul class="nav user-menu"><!-- Notifications -->
             <li class="nav-item dropdown noti-dropdown"><a href="#" class="dropdown-toggle nav-link"
@@ -80,10 +80,12 @@
                     <div class="user-header">
                         <div class="avatar avatar-sm"><img src="static/picture/avatar-01.jpg" alt="User Image"
                                                            class="avatar-img rounded-circle"></div>
-                        <div class="user-text"><h6>{{username}}</h6>
-                            <p class="text-muted mb-0">老师</p></div>
+                        <div class="user-text"><h6>Ryan Taylor</h6>
+                            <p class="text-muted mb-0">Administrator</p></div>
                     </div>
-                    <a class="dropdown-item" href="{{url_for('logout')}}">登出</a></div>
+                    <a class="dropdown-item" href="profile.html">My Profile</a><a class="dropdown-item"
+                                                                                  href="inbox.html">Inbox</a><a
+                        class="dropdown-item" href="login.html">Logout</a></div>
             </li><!-- /User Menu --></ul><!-- /Header Right Menu --></div><!-- /Header --><!-- Sidebar -->
     <div class="sidebar" id="sidebar">
         <div class="sidebar-inner slimscroll">
@@ -95,7 +97,6 @@
                     <li><a href="{{ url_for('teacher.info') }}"><i class="fas fa-comment-dollar"></i><span>个人中心</span></a></li>
                     <li><a href="{{ url_for('teacher.stuapp') }}"><i class="fas fa-clipboard-list"></i><span>学生申请</span></a></li>
                     <li><a href="{{ url_for('teacher.titapp') }}"><i class="fas fa-calendar-day"></i><span>选题申请</span></a></li>
-                </ul>
             </div>
         </div>
     </div><!-- /Sidebar --><!-- Page Wrapper -->
@@ -119,17 +120,14 @@
                                         <th>编号</th>
                                         <th>题目名称</th>
                                         <th>指导老师</th>
-                                        <th>研究方向</th>
                                         <th>具体信息</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     <tr>
-
                                         <td>PRE2209</td>
                                         <td><h2><a>Mathematics</a></h2></td>
                                         <td>5</td>
-                                        <td>6</td>
                                         <td class="text-right">
                                             <div class="actions"><a href="edit-subject.html"
                                                                     class="btn btn-sm bg-success-light mr-2"><i
@@ -137,12 +135,10 @@
                                                                                   class="btn btn-sm bg-danger-light"><i
                                                     class="fas fa-trash"></i></a></div>
                                         </td>
-
                                     </tr>
                                     <tr>
                                         <td>PRE2213</td>
                                         <td><h2><a>History</a></h2></td>
-                                        <td>6</td>
                                         <td>6</td>
                                         <td class="text-right">
                                             <div class="actions"><a href="edit-subject.html"
@@ -156,7 +152,6 @@
                                         <td>PRE2143</td>
                                         <td><h2><a>Science</a></h2></td>
                                         <td>3</td>
-                                        <td>6</td>
                                         <td class="text-right">
                                             <div class="actions"><a href="edit-subject.html"
                                                                     class="btn btn-sm bg-success-light mr-2"><i
@@ -169,7 +164,6 @@
                                         <td>PRE2431</td>
                                         <td><h2><a>Geography</a></h2></td>
                                         <td>8</td>
-                                        <td>6</td>
                                         <td class="text-right">
                                             <div class="actions"><a href="edit-subject.html"
                                                                     class="btn btn-sm bg-success-light mr-2"><i
@@ -182,7 +176,6 @@
                                         <td>PRE1534</td>
                                         <td><h2><a>Botony</a></h2></td>
                                         <td>9</td>
-                                        <td>6</td>
                                         <td class="text-right">
                                             <div class="actions"><a href="edit-subject.html"
                                                                     class="btn btn-sm bg-success-light mr-2"><i
@@ -195,7 +188,6 @@
                                         <td>PRE2153</td>
                                         <td><h2><a>English</a></h2></td>
                                         <td>4</td>
-                                        <td>6</td>
                                         <td class="text-right">
                                             <div class="actions"><a href="edit-subject.html"
                                                                     class="btn btn-sm bg-success-light mr-2"><i

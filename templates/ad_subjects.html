@@ -81,7 +81,7 @@
                         <div class="avatar avatar-sm"><img src="static/picture/avatar-01.jpg" alt="User Image"
                                                            class="avatar-img rounded-circle"></div>
                         <div class="user-text"><h6>{{username}}</h6>
-                            <p class="text-muted mb-0">老师</p></div>
+                            <p class="text-muted mb-0">管理员</p></div>
                     </div>
                     <a class="dropdown-item" href="{{url_for('logout')}}">登出</a></div>
             </li><!-- /User Menu --></ul><!-- /Header Right Menu --></div><!-- /Header --><!-- Sidebar -->
@@ -90,11 +90,9 @@
             <div id="sidebar-menu" class="sidebar-menu">
                 <ul>
                     <li class="menu-title"><span>主菜单</span></li>
-                    <li><a href="{{ url_for('teacher.stulist') }}"><i class="fas fa-th-large"></i><span>学生列表</span></a></li>
-                    <li class="active"><a href="{{ url_for('teacher.titlist') }}"><i class="fas fa-holly-berry"></i><span>选题列表</span></a></li>
-                    <li><a href="{{ url_for('teacher.info') }}"><i class="fas fa-comment-dollar"></i><span>个人中心</span></a></li>
-                    <li><a href="{{ url_for('teacher.stuapp') }}"><i class="fas fa-clipboard-list"></i><span>学生申请</span></a></li>
-                    <li><a href="{{ url_for('teacher.titapp') }}"><i class="fas fa-calendar-day"></i><span>选题申请</span></a></li>
+                    <li ><a href=""><i class="fas fa-th-large"></i><span>学生列表</span></a></li>
+                    <li><a href="{{ url_for('admin.tealist') }}"><i class="fas fa-holly-berry"></i><span>老师列表</span></a></li>
+                    <li class="active"><a href="{{ url_for('admin.titlist') }}"><i class="fas fa-comment-dollar"></i><span>选题列表</span></a></li>
                 </ul>
             </div>
         </div>
@@ -131,8 +129,7 @@
                                         <td>5</td>
                                         <td>6</td>
                                         <td class="text-right">
-                                            <div class="actions"><a href="edit-subject.html"
-                                                                    class="btn btn-sm bg-success-light mr-2"><i
+                                            <div class="actions"><a href="#" class="btn btn-sm bg-success-light mr-2" data-toggle="modal" data-target="#editModal"><i
                                                     class="fas fa-pen"></i></a><a href="#"
                                                                                   class="btn btn-sm bg-danger-light"><i
                                                     class="fas fa-trash"></i></a></div>
@@ -145,8 +142,7 @@
                                         <td>6</td>
                                         <td>6</td>
                                         <td class="text-right">
-                                            <div class="actions"><a href="edit-subject.html"
-                                                                    class="btn btn-sm bg-success-light mr-2"><i
+                                            <div class="actions"><a href="#" class="btn btn-sm bg-success-light mr-2" data-toggle="modal" data-target="#editModal"><i
                                                     class="fas fa-pen"></i></a><a href="#"
                                                                                   class="btn btn-sm bg-danger-light"><i
                                                     class="fas fa-trash"></i></a></div>
@@ -211,6 +207,34 @@
                     </div>
                 </div>
             </div>
+
+                <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="editModalLabel">编辑数据</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true"></span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form method="post" id="myform">
+                                    <input type="hidden" id="rowId" name="rowId">
+                                    <label>编号</label> <input id="number" value="123">
+                                    <label>名称</label> <input id="name" value="123">
+                                    <label>指导老师</label> <input id="teacher" value="123">
+                                    <label>学生</label> <input id="student" value="123">
+                                    <label>研究方向</label> <input id="research" value="123">
+                                    <label>具体信息</label> <input id="info" value="123">
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+                                <button type="button" class="btn btn-primary" onclick="document.getElementById('myform').submit()">保存更改</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
         </div><!-- Footer -->
         <!-- /Footer --></div>
     <!-- /Page Wrapper --></div><!-- /Main Wrapper --><!-- jQuery -->
@@ -220,5 +244,33 @@
 <script src="static/js/jquery.slimscroll.min.js"></script><!-- Datatables JS -->
 <script src="static/js/datatables.min.js"></script><!-- Custom JS -->
 <script src="static/js/script.js"></script>
+    <script>
+        // 获取所有的编辑按钮
+        var editBtns = document.getElementsByClassName('btn btn-sm bg-success-light mr-2');
+
+        // 为每个编辑按钮添加点击事件处理器
+        for (var i = 0; i < editBtns.length; i++) {
+            editBtns[i].addEventListener('click', function() {
+                // 获取这一行的数据
+                var row = this.parentNode.parentNode.parentNode;
+                var data1 = row.cells[0].innerText;
+                var data2 = row.cells[1].innerText;
+                var data3 = row.cells[2].innerText;
+                var data4 = row.cells[3].innerText;
+                var data5 = row.cells[4].innerText;
+
+                // 将数据填充到模态框的表单中
+                document.getElementById('number').value = data1;
+                document.getElementById('name').value = data2;
+                document.getElementById('teacher').value = data3;
+                document.getElementById('student').value = data4;
+                document.getElementById('research').value = data5;
+
+                // 将行的唯一标识符设置为隐藏输入字段的值
+                // 这里假设你的行的唯一标识符是第一个单元格的内容
+                document.getElementById('rowId').value = data1;
+            });
+        }
+    </script>
 </body>
 </html>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
-    <title>个人信息</title><!-- Favicon -->
+    <title>教师信息</title><!-- Favicon -->
     <link rel="shortcut icon" href="static/picture/favicon1.png">
     <link rel="stylesheet" href="static/css/css2.css"><!-- Bootstrap CSS -->
     <link rel="stylesheet" href="static/css/bootstrap.min.css"><!-- Fontawesome CSS -->
@@ -15,8 +15,8 @@
 <body><!-- Main Wrapper -->
 <div class="main-wrapper"><!-- Header -->
     <div class="header"><!-- Logo -->
-        <div class="header-left"><a href="{{ url_for('index') }}" class="logo"><img src="static/picture/logo1.png" alt="Logo"></a><a
-                href="{{ url_for('index') }}" class="logo logo-small"><img src="static/picture/logo-small1.png" alt="Logo" width="30"
+        <div class="header-left"><a href="index.html" class="logo"><img src="static/picture/logo1.png" alt="Logo"></a><a
+                href="index.html" class="logo logo-small"><img src="static/picture/logo-small1.png" alt="Logo" width="30"
                                                                height="30"></a></div><!-- /Logo --><a
                 href="javascript:void(0);" id="toggle_btn"><i class="fas fa-align-left"></i></a><!-- Search Bar -->
         <!-- /Search Bar --><!-- Mobile Menu Toggle --><a class="mobile_btn" id="mobile_btn"><i
@@ -80,10 +80,12 @@
                     <div class="user-header">
                         <div class="avatar avatar-sm"><img src="static/picture/avatar-01.jpg" alt="User Image"
                                                            class="avatar-img rounded-circle"></div>
-                        <div class="user-text"><h6>{{ username }}</h6>
-                            <p class="text-muted mb-0">老师</p></div>
+                        <div class="user-text"><h6>Ryan Taylor</h6>
+                            <p class="text-muted mb-0">学生</p></div>
                     </div>
-                    <a class="dropdown-item" href="{{ url_for('logout') }}">登出</a></div>
+                    <a class="dropdown-item" href="profile.html">My Profile</a><a class="dropdown-item"
+                                                                                  href="inbox.html">Inbox</a><a
+                        class="dropdown-item" href="{{ url_for('logout') }}">登出</a></div>
             </li><!-- /User Menu --></ul><!-- /Header Right Menu --></div><!-- /Header --><!-- Sidebar -->
     <div class="sidebar" id="sidebar">
         <div class="sidebar-inner slimscroll">

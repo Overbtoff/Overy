@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
-    <title>学生信息</title><!-- Favicon -->
+    <title>老师列表</title><!-- Favicon -->
     <link rel="shortcut icon" href="../static/picture/favicon1.png">
     <link rel="stylesheet" href="static/css/css2.css"><!-- Bootstrap CSS -->
     <link rel="stylesheet" href="static/css/bootstrap.min.css"><!-- Fontawesome CSS -->
@@ -15,64 +15,13 @@
 <body><!-- Main Wrapper -->
 <div class="main-wrapper"><!-- Header -->
     <div class="header"><!-- Logo -->
-        <div class="header-left"><a href="index.html" class="logo"><img src="static/picture/logo1.png" alt="Logo"></a><a
+        <div class="header-left"><a href="{{url_for('index')}}" class="logo"><img src="static/picture/logo1.png" alt="Logo"></a><a
                 href="index.html" class="logo logo-small"><img src="static/picture/logo-small1.png" alt="Logo" width="30"
                                                                height="30"></a></div><!-- /Logo --><a
                 href="javascript:void(0);" id="toggle_btn"><i class="fas fa-align-left"></i></a><!-- Search Bar -->
         <!-- /Search Bar --><!-- Mobile Menu Toggle --><a class="mobile_btn" id="mobile_btn"><i
                 class="fas fa-bars"></i></a><!-- /Mobile Menu Toggle --><!-- Header Right Menu -->
-        <ul class="nav user-menu"><!-- Notifications -->
-            <li class="nav-item dropdown noti-dropdown"><a href="#" class="dropdown-toggle nav-link"
-                                                           data-toggle="dropdown"><i class="far fa-bell"></i><span
-                    class="badge badge-pill">3</span></a>
-                <div class="dropdown-menu notifications">
-                    <div class="topnav-dropdown-header"><span class="notification-title">通知</span><a
-                            href="javascript:void(0)" class="clear-noti">Clear All </a></div>
-                    <div class="noti-content">
-                        <ul class="notification-list">
-                            <li class="notification-message"><a href="#">
-                                <div class="media"><span class="avatar avatar-sm"><img class="avatar-img rounded-circle"
-                                                                                       alt="User Image"
-                                                                                       src="static/picture/avatar-02.jpg"></span>
-                                    <div class="media-body"><p class="noti-details"><span class="noti-title">Carlson Tech</span>has
-                                        approved <span class="noti-title">your estimate</span></p>
-                                        <p class="noti-time"><span class="notification-time">4 mins ago</span></p></div>
-                                </div>
-                            </a></li>
-                            <li class="notification-message"><a href="#">
-                                <div class="media"><span class="avatar avatar-sm"><img class="avatar-img rounded-circle"
-                                                                                       alt="User Image"
-                                                                                       src="static/picture/avatar-11.jpg"></span>
-                                    <div class="media-body"><p class="noti-details"><span class="noti-title">International Software Inc</span>has
-                                        sent you a invoice in the amount of <span class="noti-title">$218</span></p>
-                                        <p class="noti-time"><span class="notification-time">6 mins ago</span></p></div>
-                                </div>
-                            </a></li>
-                            <li class="notification-message"><a href="#">
-                                <div class="media"><span class="avatar avatar-sm"><img class="avatar-img rounded-circle"
-                                                                                       alt="User Image"
-                                                                                       src="static/picture/avatar-17.jpg"></span>
-                                    <div class="media-body"><p class="noti-details"><span
-                                            class="noti-title">John Hendry</span>sent a cancellation request <span
-                                            class="noti-title">Apple iPhone XR</span></p>
-                                        <p class="noti-time"><span class="notification-time">8 mins ago</span></p></div>
-                                </div>
-                            </a></li>
-                            <li class="notification-message"><a href="#">
-                                <div class="media"><span class="avatar avatar-sm"><img class="avatar-img rounded-circle"
-                                                                                       alt="User Image"
-                                                                                       src="static/picture/avatar-13.jpg"></span>
-                                    <div class="media-body"><p class="noti-details"><span class="noti-title">Mercury Software Inc</span>added
-                                        a new product <span class="noti-title">Apple MacBook Pro</span></p>
-                                        <p class="noti-time"><span class="notification-time">12 mins ago</span></p>
-                                    </div>
-                                </div>
-                            </a></li>
-                        </ul>
-                    </div>
-                    <div class="topnav-dropdown-footer"><a href="#">查看所有通知</a></div>
-                </div>
-            </li><!-- /Notifications --><!-- User Menu -->
+        <ul class="nav user-menu"><!-- User Menu -->
             <li class="nav-item dropdown has-arrow"><a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown"><span
                     class="user-img"><img class="rounded-circle" src="static/picture/avatar-01.jpg" width="31"
                                           alt="Ryan Taylor"></span></a>
@@ -81,27 +30,29 @@
                         <div class="avatar avatar-sm"><img src="static/picture/avatar-01.jpg" alt="User Image"
                                                            class="avatar-img rounded-circle"></div>
                         <div class="user-text"><h6>{{username}}</h6>
-                            <p class="text-muted mb-0">老师</p></div>
+                            <p class="text-muted mb-0">学生</p></div>
                     </div>
-                    <a class="dropdown-item" href="{{url_for('logout')}}">退出</a></div>
+                    <a class="dropdown-item" href="{{url_for('logout')}}">登出</a></div>
             </li><!-- /User Menu --></ul><!-- /Header Right Menu --></div><!-- /Header --><!-- Sidebar -->
     <div class="sidebar" id="sidebar">
         <div class="sidebar-inner slimscroll">
             <div id="sidebar-menu" class="sidebar-menu">
                 <ul>
-                    <li class="menu-title"><span>菜单</span></li>
-                    <li class="active"><a href="{{ url_for('teacher.stulist') }}"><i class="fas fa-th-large"></i><span>学生列表</span></a></li>
-                    <li ><a href="{{ url_for('teacher.titlist') }}"><i class="fas fa-holly-berry"></i><span>选题列表</span></a></li>
-                    <li><a href="{{ url_for('teacher.info') }}"><i class="fas fa-comment-dollar"></i><span>个人中心</span></a></li>
-                    <li><a href="{{ url_for('teacher.stuapp') }}"><i class="fas fa-clipboard-list"></i><span>学生申请</span></a></li>
-                    <li><a href="{{ url_for('teacher.titapp') }}"><i class="fas fa-calendar-day"></i><span>选题申请</span></a></li>
+                    <li class="menu-title"><span>主菜单</span></li>
+                    <li><a href="{{ url_for('student.info') }}"><i class="fas fa-th-large"></i><span>个人信息</span></a></li>
+                    <li><a href="{{ url_for('student.titlist') }}"><i class="fas fa-holly-berry"></i><span>选题列表</span></a></li>
+                    <li class="active"><a href="{{ url_for('student.tealist') }}"><i class="fas fa-comment-dollar"></i><span>老师列表</span></a></li>
                 </ul>
             </div>
         </div>
     </div><!-- /Sidebar --><!-- Page Wrapper -->
     <div class="page-wrapper">
         <div class="content container-fluid"><!-- Page Header -->
-            <!-- /Page Header -->
+            <div class="page-header">
+                <div class="row align-items-center">
+                    <div class="col"><h3 class="page-title">教师列表</h3>
+                    </div>
+            </div><!-- /Page Header -->
             <div class="row">
                 <div class="col-sm-12">
                     <div class="card card-table">
@@ -115,35 +66,37 @@
                                 </select>
                                 <button class="btn btn-primary" type="submit">筛选</button>
                             </form>
+
                             <div class="table-responsive">
                                 <table class="table table-hover table-center mb-0 datatable">
                                     <thead>
                                     <tr>
-                                        <th>学号</th>
+                                        <th>工号</th>
                                         <th>姓名</th>
-                                        <th>专业</th>
-                                        <th>班级</th>
-                                        <th>出生日期</th>
-                                        <th>电话号码</th>
-                                        <th>班主任信息</th>
-                                        <th class="text-right">操作</th>
+                                        <th>部门</th>
+                                        <th>性别</th>
+                                        <th>科目</th>
+                                        <th>Section</th>
+                                        <th>手机号</th>
+                                        <th>Address</th>
+                                        <th class="text-right">Action</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     <tr>
                                         <td>PRE2209</td>
-                                        <td><h2 class="table-avatar"><a href="student-details.html"
-                                                                        class="avatar avatar-sm mr-2"><img
-                                                class="avatar-img rounded-circle" src="static/picture/avatar-01.jpg"
-                                                alt="User Image"></a><a href="student-details.html">Aaliyah</a></h2>
+                                        <td><h2 class="table-avatar"><a href="teacher-details.html" class="avatar avatar-sm mr-2"><img
+                                                class="avatar-img rounded-circle" src="static/picture/avatar-02.jpg"
+                                                alt="User Image"></a><a href="#" class="teacher-name" data-toggle="modal" data-target="#teacherModal">Aaliyah</a></h2>
                                         </td>
-                                        <td>10 A</td>
-                                        <td>2 Feb 2002</td>
-                                        <td>Jeffrey Wong</td>
+                                        <td>10</td>
+                                        <td>Female</td>
+                                        <td>Mathematics</td>
+                                        <td>A</td>
                                         <td>097 3584 5870</td>
                                         <td>911 Deer Ridge Drive,USA</td>
                                         <td class="text-right">
-                                            <div class="actions"><a href="edit-student.html"
+                                            <div class="actions"><a href="/student/titlist?teaid=PRE2209"
                                                                     class="btn btn-sm bg-success-light mr-2"><i
                                                     class="fas fa-pen"></i></a><a href="#"
                                                                                   class="btn btn-sm bg-danger-light"><i
@@ -152,18 +105,19 @@
                                     </tr>
                                     <tr>
                                         <td>PRE2213</td>
-                                        <td><h2 class="table-avatar"><a href="student-details.html"
+                                        <td><h2 class="table-avatar"><a href="teacher-details.html"
                                                                         class="avatar avatar-sm mr-2"><img
                                                 class="avatar-img rounded-circle" src="static/picture/avatar-03.jpg"
-                                                alt="User Image"></a><a href="student-details.html">Malynne</a></h2>
+                                                alt="User Image"></a><a href="teacher-details.html">Malynne</a></h2>
                                         </td>
-                                        <td>8 A</td>
-                                        <td>3 June 2010</td>
-                                        <td>Fields Malynne</td>
+                                        <td>8</td>
+                                        <td>Female</td>
+                                        <td>Physics</td>
+                                        <td>A</td>
                                         <td>242 362 3100</td>
                                         <td>Bacardi Rd P.O. Box N-4880,New Providence</td>
                                         <td class="text-right">
-                                            <div class="actions"><a href="edit-student.html"
+                                            <div class="actions"><a href="edit-teacher.html"
                                                                     class="btn btn-sm bg-success-light mr-2"><i
                                                     class="fas fa-pen"></i></a><a href="#"
                                                                                   class="btn btn-sm bg-danger-light"><i
@@ -172,18 +126,19 @@
                                     </tr>
                                     <tr>
                                         <td>PRE2143</td>
-                                        <td><h2 class="table-avatar"><a href="student-details.html"
+                                        <td><h2 class="table-avatar"><a href="teacher-details.html"
                                                                         class="avatar avatar-sm mr-2"><img
-                                                class="avatar-img rounded-circle" src="static/picture/avatar-02.jpg"
-                                                alt="User Image"></a><a href="student-details.html">Levell Scott</a>
+                                                class="avatar-img rounded-circle" src="static/picture/avatar-04.jpg"
+                                                alt="User Image"></a><a href="teacher-details.html">Levell Scott</a>
                                         </h2></td>
-                                        <td>10 A</td>
-                                        <td>12 Apr 2002</td>
-                                        <td>Jeffrey Scott</td>
+                                        <td>10</td>
+                                        <td>Male</td>
+                                        <td>Science</td>
+                                        <td>B</td>
                                         <td>026 7318 4366</td>
                                         <td>P.O. Box:41,Gaborone</td>
                                         <td class="text-right">
-                                            <div class="actions"><a href="edit-student.html"
+                                            <div class="actions"><a href="edit-teacher.html"
                                                                     class="btn btn-sm bg-success-light mr-2"><i
                                                     class="fas fa-pen"></i></a><a href="#"
                                                                                   class="btn btn-sm bg-danger-light"><i
@@ -192,17 +147,18 @@
                                     </tr>
                                     <tr>
                                         <td>PRE2431</td>
-                                        <td><h2 class="table-avatar"><a href="student-details.html"
+                                        <td><h2 class="table-avatar"><a href="teacher-details.html"
                                                                         class="avatar avatar-sm mr-2"><img
-                                                class="avatar-img rounded-circle" src="static/picture/avatar-03.jpg"
-                                                alt="User Image"></a><a href="student-details.html">Minnie</a></h2></td>
-                                        <td>11 C</td>
-                                        <td>24 Feb 2000</td>
-                                        <td>J Shaffer</td>
+                                                class="avatar-img rounded-circle" src="static/picture/avatar-05.jpg"
+                                                alt="User Image"></a><a href="teacher-details.html">Minnie</a></h2></td>
+                                        <td>11</td>
+                                        <td>Male</td>
+                                        <td>History</td>
+                                        <td>C</td>
                                         <td>952 512 4909</td>
                                         <td>4771 Oral Lake Road,Golden Valley</td>
                                         <td class="text-right">
-                                            <div class="actions"><a href="edit-student.html"
+                                            <div class="actions"><a href="edit-teacher.html"
                                                                     class="btn btn-sm bg-success-light mr-2"><i
                                                     class="fas fa-pen"></i></a><a href="#"
                                                                                   class="btn btn-sm bg-danger-light"><i
@@ -211,17 +167,18 @@
                                     </tr>
                                     <tr>
                                         <td>PRE1534</td>
-                                        <td><h2 class="table-avatar"><a href="student-details.html"
+                                        <td><h2 class="table-avatar"><a href="teacher-details.html"
                                                                         class="avatar avatar-sm mr-2"><img
-                                                class="avatar-img rounded-circle" src="static/picture/avatar-04.jpg"
-                                                alt="User Image"></a><a href="student-details.html">Lois A</a></h2></td>
-                                        <td>10 A</td>
-                                        <td>22 Jul 2006</td>
-                                        <td>Cleary Wong</td>
+                                                class="avatar-img rounded-circle" src="static/picture/avatar-06.jpg"
+                                                alt="User Image"></a><a href="teacher-details.html">Lois A</a></h2></td>
+                                        <td>10</td>
+                                        <td>Female</td>
+                                        <td>English</td>
+                                        <td>B</td>
                                         <td>413 289 1314</td>
                                         <td>2844 Leverton Cove Road,Palmer</td>
                                         <td class="text-right">
-                                            <div class="actions"><a href="edit-student.html"
+                                            <div class="actions"><a href="edit-teacher.html"
                                                                     class="btn btn-sm bg-success-light mr-2"><i
                                                     class="fas fa-pen"></i></a><a href="#"
                                                                                   class="btn btn-sm bg-danger-light"><i
@@ -230,37 +187,18 @@
                                     </tr>
                                     <tr>
                                         <td>PRE2153</td>
-                                        <td><h2 class="table-avatar"><a href="student-details.html"
+                                        <td><h2 class="table-avatar"><a href="teacher-details.html"
                                                                         class="avatar avatar-sm mr-2"><img
-                                                class="avatar-img rounded-circle" src="static/picture/avatar-05.jpg"
-                                                alt="User Image"></a><a href="student-details.html">Calvin</a></h2></td>
-                                        <td>9 B</td>
-                                        <td>8 Dec 2003</td>
-                                        <td>Minnie J Shaffer</td>
+                                                class="avatar-img rounded-circle" src="static/picture/avatar-07.jpg"
+                                                alt="User Image"></a><a href="teacher-details.html">Calvin</a></h2></td>
+                                        <td>9</td>
+                                        <td>Male</td>
+                                        <td>Mathematics</td>
+                                        <td>C</td>
                                         <td>701 753 3810</td>
                                         <td>1900 Hidden Meadow Drive,Crete</td>
                                         <td class="text-right">
-                                            <div class="actions"><a href="edit-student.html"
-                                                                    class="btn btn-sm bg-success-light mr-2"><i
-                                                    class="fas fa-pen"></i></a><a href="#"
-                                                                                  class="btn btn-sm bg-danger-light"><i
-                                                    class="fas fa-trash"></i></a></div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>PRE1252</td>
-                                        <td><h2 class="table-avatar"><a href="student-details.html"
-                                                                        class="avatar avatar-sm mr-2"><img
-                                                class="avatar-img rounded-circle" src="static/picture/avatar-06.jpg"
-                                                alt="User Image"></a><a href="student-details.html">Joe Kelley</a></h2>
-                                        </td>
-                                        <td>11 C</td>
-                                        <td>7 Oct 2000</td>
-                                        <td>Vincent Howard</td>
-                                        <td>402 221 7523</td>
-                                        <td>3979 Ashwood Drive,Omaha</td>
-                                        <td class="text-right">
-                                            <div class="actions"><a href="edit-student.html"
+                                            <div class="actions"><a href="edit-teacher.html"
                                                                     class="btn btn-sm bg-success-light mr-2"><i
                                                     class="fas fa-pen"></i></a><a href="#"
                                                                                   class="btn btn-sm bg-danger-light"><i
@@ -269,18 +207,19 @@
                                     </tr>
                                     <tr>
                                         <td>PRE1434</td>
-                                        <td><h2 class="table-avatar"><a href="student-details.html"
+                                        <td><h2 class="table-avatar"><a href="teacher-details.html"
                                                                         class="avatar avatar-sm mr-2"><img
-                                                class="avatar-img rounded-circle" src="static/picture/avatar-07.jpg"
-                                                alt="User Image"></a><a href="student-details.html">Vincent</a></h2>
+                                                class="avatar-img rounded-circle" src="static/picture/avatar-08.jpg"
+                                                alt="User Image"></a><a href="teacher-details.html">Vincent</a></h2>
                                         </td>
-                                        <td>10 A</td>
-                                        <td>4 Jan 2002</td>
-                                        <td>Kelley Joe</td>
+                                        <td>10</td>
+                                        <td>Male</td>
+                                        <td>Mathematics</td>
+                                        <td>C</td>
                                         <td>402 221 7523</td>
                                         <td>3979 Ashwood Drive,Omaha</td>
                                         <td class="text-right">
-                                            <div class="actions"><a href="edit-student.html"
+                                            <div class="actions"><a href="edit-teacher.html"
                                                                     class="btn btn-sm bg-success-light mr-2"><i
                                                     class="fas fa-pen"></i></a><a href="#"
                                                                                   class="btn btn-sm bg-danger-light"><i
@@ -289,18 +228,19 @@
                                     </tr>
                                     <tr>
                                         <td>PRE2345</td>
-                                        <td><h2 class="table-avatar"><a href="student-details.html"
+                                        <td><h2 class="table-avatar"><a href="teacher-details.html"
                                                                         class="avatar avatar-sm mr-2"><img
-                                                class="avatar-img rounded-circle" src="static/picture/avatar-08.jpg"
-                                                alt="User Image"></a><a href="student-details.html">Kozma Tatari</a>
+                                                class="avatar-img rounded-circle" src="static/picture/avatar-09.jpg"
+                                                alt="User Image"></a><a href="teacher-details.html">Kozma Tatari</a>
                                         </h2></td>
-                                        <td>9 A</td>
-                                        <td>1 Feb 2006</td>
-                                        <td>Lombardi</td>
+                                        <td>9</td>
+                                        <td>Female</td>
+                                        <td>Science</td>
+                                        <td>A</td>
                                         <td>04 2239 968</td>
                                         <td>Rruga E Kavajes,Condor Center,Tirana</td>
                                         <td class="text-right">
-                                            <div class="actions"><a href="edit-student.html"
+                                            <div class="actions"><a href="edit-teacher.html"
                                                                     class="btn btn-sm bg-success-light mr-2"><i
                                                     class="fas fa-pen"></i></a><a href="#"
                                                                                   class="btn btn-sm bg-danger-light"><i
@@ -309,18 +249,19 @@
                                     </tr>
                                     <tr>
                                         <td>PRE2365</td>
-                                        <td><h2 class="table-avatar"><a href="student-details.html"
+                                        <td><h2 class="table-avatar"><a href="teacher-details.html"
                                                                         class="avatar avatar-sm mr-2"><img
-                                                class="avatar-img rounded-circle" src="static/picture/avatar-09.jpg"
-                                                alt="User Image"></a><a href="student-details.html">John Chambers</a>
+                                                class="avatar-img rounded-circle" src="static/picture/avatar-10.jpg"
+                                                alt="User Image"></a><a href="teacher-details.html">John Chambers</a>
                                         </h2></td>
-                                        <td>11 B</td>
-                                        <td>13 Sept 2003</td>
-                                        <td>Wong Jeffrey</td>
+                                        <td>11</td>
+                                        <td>Male</td>
+                                        <td>Botony</td>
+                                        <td>B</td>
                                         <td>870 663 2334</td>
                                         <td>4667 Sunset Drive,Pine Bluff</td>
                                         <td class="text-right">
-                                            <div class="actions"><a href="edit-student.html"
+                                            <div class="actions"><a href="edit-teacher.html"
                                                                     class="btn btn-sm bg-success-light mr-2"><i
                                                     class="fas fa-pen"></i></a><a href="#"
                                                                                   class="btn btn-sm bg-danger-light"><i
@@ -329,18 +270,19 @@
                                     </tr>
                                     <tr>
                                         <td>PRE1234</td>
-                                        <td><h2 class="table-avatar"><a href="student-details.html"
+                                        <td><h2 class="table-avatar"><a href="teacher-details.html"
                                                                         class="avatar avatar-sm mr-2"><img
-                                                class="avatar-img rounded-circle" src="static/picture/avatar-10.jpg"
-                                                alt="User Image"></a><a href="student-details.html">Nathan Humphries</a>
+                                                class="avatar-img rounded-circle" src="static/picture/avatar-11.jpg"
+                                                alt="User Image"></a><a href="teacher-details.html">Nathan Humphries</a>
                                         </h2></td>
-                                        <td>10 B</td>
-                                        <td>26 Apr 1994</td>
-                                        <td>Stephen Marley</td>
+                                        <td>10</td>
+                                        <td>Male</td>
+                                        <td>Biology</td>
+                                        <td>A</td>
                                         <td>077 3499 9959</td>
                                         <td>86 Lamphey Road,Thelnetham</td>
                                         <td class="text-right">
-                                            <div class="actions"><a href="edit-student.html"
+                                            <div class="actions"><a href="edit-teacher.html"
                                                                     class="btn btn-sm bg-success-light mr-2"><i
                                                     class="fas fa-pen"></i></a><a href="#"
                                                                                   class="btn btn-sm bg-danger-light"><i
@@ -355,7 +297,58 @@
                 </div>
             </div>
         </div><!-- Footer -->
+        <!-- /Footer --></div>
     <!-- /Page Wrapper --></div><!-- /Main Wrapper --><!-- jQuery -->
+    <div class="modal fade" id="teacherModal" tabindex="-1" role="dialog" aria-labelledby="teacherModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="teacherModalLabel">详细信息</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"></span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="about-info"><h4>教师信息</h4>
+                       <div class="media mt-3">
+                            <div class="media-body">
+                                <ul>
+                                    <li><span class="title-span">姓名:</span><span class="info-span">沙普爱思</span>
+                                    </li>
+                                    <li><span class="title-span">专业:</span><span class="info-span">软件工程</span>
+                                    </li>
+                                    <li><span class="title-span">联系方式:</span><span class="info-span">123 4567 8910 </span>
+                                    </li>
+                                    <li><span class="title-span">邮箱:</span><span class="info-span">shashawoaini@gmail.com</span>
+                                    </li>
+                                    <li><span class="title-span">性别:</span><span
+                                            class="info-span">男</span></li>
+                                    <li><span class="title-span">出生日期:</span><span
+                                            class="info-span">2000.01.01</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="about-info"><h4>现有选题</h4>
+                        <div class="media mt-3">
+                            <div class="media-body">
+                                <ul>
+                                    <li><span class="title-span">姓名:</span><span class="info-span">沙普爱思</span>
+                                    </li>
+                                    <li><span class="title-span">专业:</span><span class="info-span">软件工程</span>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">关闭</button>
+                </div>
+            </div>
+        </div>
+    </div>
 <script src="static/js/jquery-3.5.1.min.js"></script><!-- Bootstrap Core JS -->
 <script src="static/js/popper.min.js"></script>
 <script src="static/js/bootstrap.min.js"></script><!-- Slimscroll JS -->
