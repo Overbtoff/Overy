@@ -13,7 +13,7 @@ def stulist():
 @teacher.route('/titlist')
 def titlist():
     username= session['username']
-    return render_template('subjects.html',username=username)
+    return render_template('tea_subjects.html', username=username)
 @teacher.route('/info')
 def info():
     username= session['username']

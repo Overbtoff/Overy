@@ -17,4 +17,4 @@ def tealist():
 @admin.route('/titlist')
 def titlist():
     username= session['username']
-    return render_template('subjects.html',username=username)
+    return render_template('stu_subjects.html', username=username)

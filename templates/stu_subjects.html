@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
-    <title>学生申请</title><!-- Favicon -->
+    <title>选题项目</title><!-- Favicon -->
     <link rel="shortcut icon" href="../static/picture/favicon1.png">
     <link rel="stylesheet" href="static/css/css2.css"><!-- Bootstrap CSS -->
     <link rel="stylesheet" href="static/css/bootstrap.min.css"><!-- Fontawesome CSS -->
@@ -96,11 +96,9 @@
             <div id="sidebar-menu" class="sidebar-menu">
                 <ul>
                     <li class="menu-title"><span>主菜单</span></li>
-                    <li><a href="{{ url_for('teacher.stulist') }}"><i class="fas fa-th-large"></i><span>学生列表</span></a></li>
-                    <li><a href="{{ url_for('teacher.titlist') }}"><i class="fas fa-holly-berry"></i><span>选题列表</span></a></li>
-                    <li><a href="{{ url_for('teacher.info') }}"><i class="fas fa-comment-dollar"></i><span>个人中心</span></a></li>
-                    <li class="active"><a href="{{ url_for('teacher.stuapp') }}"><i class="fas fa-clipboard-list"></i><span>学生申请</span></a></li>
-                    <li><a href="{{ url_for('teacher.titapp') }}"><i class="fas fa-calendar-day"></i><span>选题申请</span></a></li>
+                    <li><a href="{{ url_for('student.info') }}"><i class="fas fa-th-large"></i><span>个人信息</span></a></li>
+                    <li class="active"><a href="{{ url_for('student.titlist') }}"><i class="fas fa-holly-berry"></i><span>选题列表</span></a></li>
+                    <li><a href="{{ url_for('student.tealist') }}"><i class="fas fa-comment-dollar"></i><span>老师列表</span></a></li>
             </div>
         </div>
     </div><!-- /Sidebar --><!-- Page Wrapper -->
@@ -123,9 +121,9 @@
                                     <tr>
                                         <th>编号</th>
                                         <th>题目名称</th>
-                                        <th>申请学生姓名</th>
-                                        <th>申请时间</th>
-                                        <th class="text-right">审核状态</th>
+                                        <th>指导老师</th>
+                                        <th>研究方向</th>
+                                        <th>具体信息</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -209,7 +207,6 @@
                 </div>
             </div>
         </div><!-- Footer -->
-        <footer><p>Copyright © 2020By <a href="/">Dreamguys.</a></p></footer><!-- /Footer --></div>
     <!-- /Page Wrapper --></div><!-- /Main Wrapper --><!-- jQuery -->
 <script src="static/js/jquery-3.5.1.min.js"></script><!-- Bootstrap Core JS -->
 <script src="static/js/popper.min.js"></script>
