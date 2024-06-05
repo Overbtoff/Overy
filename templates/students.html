@@ -22,57 +22,7 @@
         <!-- /Search Bar --><!-- Mobile Menu Toggle --><a class="mobile_btn" id="mobile_btn"><i
                 class="fas fa-bars"></i></a><!-- /Mobile Menu Toggle --><!-- Header Right Menu -->
         <ul class="nav user-menu"><!-- Notifications -->
-            <li class="nav-item dropdown noti-dropdown"><a href="#" class="dropdown-toggle nav-link"
-                                                           data-toggle="dropdown"><i class="far fa-bell"></i><span
-                    class="badge badge-pill">3</span></a>
-                <div class="dropdown-menu notifications">
-                    <div class="topnav-dropdown-header"><span class="notification-title">通知</span><a
-                            href="javascript:void(0)" class="clear-noti">Clear All </a></div>
-                    <div class="noti-content">
-                        <ul class="notification-list">
-                            <li class="notification-message"><a href="#">
-                                <div class="media"><span class="avatar avatar-sm"><img class="avatar-img rounded-circle"
-                                                                                       alt="User Image"
-                                                                                       src="static/picture/avatar-02.jpg"></span>
-                                    <div class="media-body"><p class="noti-details"><span class="noti-title">Carlson Tech</span>has
-                                        approved <span class="noti-title">your estimate</span></p>
-                                        <p class="noti-time"><span class="notification-time">4 mins ago</span></p></div>
-                                </div>
-                            </a></li>
-                            <li class="notification-message"><a href="#">
-                                <div class="media"><span class="avatar avatar-sm"><img class="avatar-img rounded-circle"
-                                                                                       alt="User Image"
-                                                                                       src="static/picture/avatar-11.jpg"></span>
-                                    <div class="media-body"><p class="noti-details"><span class="noti-title">International Software Inc</span>has
-                                        sent you a invoice in the amount of <span class="noti-title">$218</span></p>
-                                        <p class="noti-time"><span class="notification-time">6 mins ago</span></p></div>
-                                </div>
-                            </a></li>
-                            <li class="notification-message"><a href="#">
-                                <div class="media"><span class="avatar avatar-sm"><img class="avatar-img rounded-circle"
-                                                                                       alt="User Image"
-                                                                                       src="static/picture/avatar-17.jpg"></span>
-                                    <div class="media-body"><p class="noti-details"><span
-                                            class="noti-title">John Hendry</span>sent a cancellation request <span
-                                            class="noti-title">Apple iPhone XR</span></p>
-                                        <p class="noti-time"><span class="notification-time">8 mins ago</span></p></div>
-                                </div>
-                            </a></li>
-                            <li class="notification-message"><a href="#">
-                                <div class="media"><span class="avatar avatar-sm"><img class="avatar-img rounded-circle"
-                                                                                       alt="User Image"
-                                                                                       src="static/picture/avatar-13.jpg"></span>
-                                    <div class="media-body"><p class="noti-details"><span class="noti-title">Mercury Software Inc</span>added
-                                        a new product <span class="noti-title">Apple MacBook Pro</span></p>
-                                        <p class="noti-time"><span class="notification-time">12 mins ago</span></p>
-                                    </div>
-                                </div>
-                            </a></li>
-                        </ul>
-                    </div>
-                    <div class="topnav-dropdown-footer"><a href="#">查看所有通知</a></div>
-                </div>
-            </li><!-- /Notifications --><!-- User Menu -->
+            <!-- /Notifications --><!-- User Menu -->
             <li class="nav-item dropdown has-arrow"><a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown"><span
                     class="user-img"><img class="rounded-circle" src="static/picture/avatar-01.jpg" width="31"
                                           alt="Ryan Taylor"></span></a>
@@ -90,9 +40,9 @@
             <div id="sidebar-menu" class="sidebar-menu">
                 <ul>
                     <li class="menu-title"><span>菜单</span></li>
-                    <li class="active"><a href="{{ url_for('teacher.stulist') }}"><i class="fas fa-th-large"></i><span>学生列表</span></a></li>
+                    <li><a href="{{ url_for('teacher.index') }}"><i class="fas fa-comment-dollar"></i><span>个人中心</span></a></li>
+                    <li class="active"><a href="{{ url_for('teacher.stulist') }}"><i class="fas fa-user-friends"></i><span>学生列表</span></a></li>
                     <li ><a href="{{ url_for('teacher.titlist') }}"><i class="fas fa-holly-berry"></i><span>选题列表</span></a></li>
-                    <li><a href="{{ url_for('teacher.info') }}"><i class="fas fa-comment-dollar"></i><span>个人中心</span></a></li>
                     <li><a href="{{ url_for('teacher.stuapp') }}"><i class="fas fa-clipboard-list"></i><span>学生申请</span></a></li>
                     <li><a href="{{ url_for('teacher.titapp') }}"><i class="fas fa-calendar-day"></i><span>选题申请</span></a></li>
                 </ul>
@@ -143,11 +93,11 @@
                                         <td>097 3584 5870</td>
                                         <td>911 Deer Ridge Drive,USA</td>
                                         <td class="text-right">
-                                            <div class="actions"><a href="edit-student.html"
-                                                                    class="btn btn-sm bg-success-light mr-2"><i
+                                            <div class="actions"><a href="{{url_for('teacher.down') }}"
+                                                                    class="btn btn-sm bg-success-light mr-2" >查看论文 <i
                                                     class="fas fa-pen"></i></a><a href="#"
-                                                                                  class="btn btn-sm bg-danger-light"><i
-                                                    class="fas fa-trash"></i></a></div>
+                                                                                  class="btn btn-sm bg-danger-light" data-toggle="modal" data-target="#conModal">评分 <i
+                                                    class="fas fa-pen"></i></a></div>
                                         </td>
                                     </tr>
                                     <tr>
@@ -190,166 +140,31 @@
                                                     class="fas fa-trash"></i></a></div>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td>PRE2431</td>
-                                        <td><h2 class="table-avatar"><a href="student-details.html"
-                                                                        class="avatar avatar-sm mr-2"><img
-                                                class="avatar-img rounded-circle" src="static/picture/avatar-03.jpg"
-                                                alt="User Image"></a><a href="student-details.html">Minnie</a></h2></td>
-                                        <td>11 C</td>
-                                        <td>24 Feb 2000</td>
-                                        <td>J Shaffer</td>
-                                        <td>952 512 4909</td>
-                                        <td>4771 Oral Lake Road,Golden Valley</td>
-                                        <td class="text-right">
-                                            <div class="actions"><a href="edit-student.html"
-                                                                    class="btn btn-sm bg-success-light mr-2"><i
-                                                    class="fas fa-pen"></i></a><a href="#"
-                                                                                  class="btn btn-sm bg-danger-light"><i
-                                                    class="fas fa-trash"></i></a></div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>PRE1534</td>
-                                        <td><h2 class="table-avatar"><a href="student-details.html"
-                                                                        class="avatar avatar-sm mr-2"><img
-                                                class="avatar-img rounded-circle" src="static/picture/avatar-04.jpg"
-                                                alt="User Image"></a><a href="student-details.html">Lois A</a></h2></td>
-                                        <td>10 A</td>
-                                        <td>22 Jul 2006</td>
-                                        <td>Cleary Wong</td>
-                                        <td>413 289 1314</td>
-                                        <td>2844 Leverton Cove Road,Palmer</td>
-                                        <td class="text-right">
-                                            <div class="actions"><a href="edit-student.html"
-                                                                    class="btn btn-sm bg-success-light mr-2"><i
-                                                    class="fas fa-pen"></i></a><a href="#"
-                                                                                  class="btn btn-sm bg-danger-light"><i
-                                                    class="fas fa-trash"></i></a></div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>PRE2153</td>
-                                        <td><h2 class="table-avatar"><a href="student-details.html"
-                                                                        class="avatar avatar-sm mr-2"><img
-                                                class="avatar-img rounded-circle" src="static/picture/avatar-05.jpg"
-                                                alt="User Image"></a><a href="student-details.html">Calvin</a></h2></td>
-                                        <td>9 B</td>
-                                        <td>8 Dec 2003</td>
-                                        <td>Minnie J Shaffer</td>
-                                        <td>701 753 3810</td>
-                                        <td>1900 Hidden Meadow Drive,Crete</td>
-                                        <td class="text-right">
-                                            <div class="actions"><a href="edit-student.html"
-                                                                    class="btn btn-sm bg-success-light mr-2"><i
-                                                    class="fas fa-pen"></i></a><a href="#"
-                                                                                  class="btn btn-sm bg-danger-light"><i
-                                                    class="fas fa-trash"></i></a></div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>PRE1252</td>
-                                        <td><h2 class="table-avatar"><a href="student-details.html"
-                                                                        class="avatar avatar-sm mr-2"><img
-                                                class="avatar-img rounded-circle" src="static/picture/avatar-06.jpg"
-                                                alt="User Image"></a><a href="student-details.html">Joe Kelley</a></h2>
-                                        </td>
-                                        <td>11 C</td>
-                                        <td>7 Oct 2000</td>
-                                        <td>Vincent Howard</td>
-                                        <td>402 221 7523</td>
-                                        <td>3979 Ashwood Drive,Omaha</td>
-                                        <td class="text-right">
-                                            <div class="actions"><a href="edit-student.html"
-                                                                    class="btn btn-sm bg-success-light mr-2"><i
-                                                    class="fas fa-pen"></i></a><a href="#"
-                                                                                  class="btn btn-sm bg-danger-light"><i
-                                                    class="fas fa-trash"></i></a></div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>PRE1434</td>
-                                        <td><h2 class="table-avatar"><a href="student-details.html"
-                                                                        class="avatar avatar-sm mr-2"><img
-                                                class="avatar-img rounded-circle" src="static/picture/avatar-07.jpg"
-                                                alt="User Image"></a><a href="student-details.html">Vincent</a></h2>
-                                        </td>
-                                        <td>10 A</td>
-                                        <td>4 Jan 2002</td>
-                                        <td>Kelley Joe</td>
-                                        <td>402 221 7523</td>
-                                        <td>3979 Ashwood Drive,Omaha</td>
-                                        <td class="text-right">
-                                            <div class="actions"><a href="edit-student.html"
-                                                                    class="btn btn-sm bg-success-light mr-2"><i
-                                                    class="fas fa-pen"></i></a><a href="#"
-                                                                                  class="btn btn-sm bg-danger-light"><i
-                                                    class="fas fa-trash"></i></a></div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>PRE2345</td>
-                                        <td><h2 class="table-avatar"><a href="student-details.html"
-                                                                        class="avatar avatar-sm mr-2"><img
-                                                class="avatar-img rounded-circle" src="static/picture/avatar-08.jpg"
-                                                alt="User Image"></a><a href="student-details.html">Kozma Tatari</a>
-                                        </h2></td>
-                                        <td>9 A</td>
-                                        <td>1 Feb 2006</td>
-                                        <td>Lombardi</td>
-                                        <td>04 2239 968</td>
-                                        <td>Rruga E Kavajes,Condor Center,Tirana</td>
-                                        <td class="text-right">
-                                            <div class="actions"><a href="edit-student.html"
-                                                                    class="btn btn-sm bg-success-light mr-2"><i
-                                                    class="fas fa-pen"></i></a><a href="#"
-                                                                                  class="btn btn-sm bg-danger-light"><i
-                                                    class="fas fa-trash"></i></a></div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>PRE2365</td>
-                                        <td><h2 class="table-avatar"><a href="student-details.html"
-                                                                        class="avatar avatar-sm mr-2"><img
-                                                class="avatar-img rounded-circle" src="static/picture/avatar-09.jpg"
-                                                alt="User Image"></a><a href="student-details.html">John Chambers</a>
-                                        </h2></td>
-                                        <td>11 B</td>
-                                        <td>13 Sept 2003</td>
-                                        <td>Wong Jeffrey</td>
-                                        <td>870 663 2334</td>
-                                        <td>4667 Sunset Drive,Pine Bluff</td>
-                                        <td class="text-right">
-                                            <div class="actions"><a href="edit-student.html"
-                                                                    class="btn btn-sm bg-success-light mr-2"><i
-                                                    class="fas fa-pen"></i></a><a href="#"
-                                                                                  class="btn btn-sm bg-danger-light"><i
-                                                    class="fas fa-trash"></i></a></div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>PRE1234</td>
-                                        <td><h2 class="table-avatar"><a href="student-details.html"
-                                                                        class="avatar avatar-sm mr-2"><img
-                                                class="avatar-img rounded-circle" src="static/picture/avatar-10.jpg"
-                                                alt="User Image"></a><a href="student-details.html">Nathan Humphries</a>
-                                        </h2></td>
-                                        <td>10 B</td>
-                                        <td>26 Apr 1994</td>
-                                        <td>Stephen Marley</td>
-                                        <td>077 3499 9959</td>
-                                        <td>86 Lamphey Road,Thelnetham</td>
-                                        <td class="text-right">
-                                            <div class="actions"><a href="edit-student.html"
-                                                                    class="btn btn-sm bg-success-light mr-2"><i
-                                                    class="fas fa-pen"></i></a><a href="#"
-                                                                                  class="btn btn-sm bg-danger-light"><i
-                                                    class="fas fa-trash"></i></a></div>
-                                        </td>
-                                    </tr>
                                     </tbody>
                                 </table>
                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="conModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="conModalLabel">评分</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true"></span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form method="post" id="tuiform" action="/teacher/stulist">
+                                <input type="hidden" id="row_id" name="rowid">
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+                            <button type="button" class="btn btn-primary" onclick="document.getElementById('tuiform').submit()">确认</button>
                         </div>
                     </div>
                 </div>
@@ -362,5 +177,22 @@
 <script src="static/js/jquery.slimscroll.min.js"></script><!-- Datatables JS -->
 <script src="static/js/datatables.min.js"></script><!-- Custom JS -->
 <script src="static/js/script.js"></script>
+    <script>// 获取所有的退选按钮
+    var cancelBtns = document.getElementsByClassName('btn btn-sm bg-danger-light');
+
+    // 为每个退选按钮添加点击事件处理器
+    for (var i = 0; i < cancelBtns.length; i++) {
+        cancelBtns[i].addEventListener('click', function() {
+            // 获取这一行的数据
+            var row = this.parentNode.parentNode.parentNode;
+            var projectId = row.cells[0].innerText; // 假设项目编号在第一个单元格
+            console.log(projectId)
+            // 将项目编号设置为隐藏输入字段的值
+            document.getElementById('row_id').value = projectId;
+
+            // 提交表单
+
+        });
+    }</script>
 </body>
 </html>

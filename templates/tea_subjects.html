@@ -22,57 +22,7 @@
         <!-- /Search Bar --><!-- Mobile Menu Toggle --><a class="mobile_btn" id="mobile_btn"><i
                 class="fas fa-bars"></i></a><!-- /Mobile Menu Toggle --><!-- Header Right Menu -->
         <ul class="nav user-menu"><!-- Notifications -->
-            <li class="nav-item dropdown noti-dropdown"><a href="#" class="dropdown-toggle nav-link"
-                                                           data-toggle="dropdown"><i class="far fa-bell"></i><span
-                    class="badge badge-pill">3</span></a>
-                <div class="dropdown-menu notifications">
-                    <div class="topnav-dropdown-header"><span class="notification-title">Notifications</span><a
-                            href="javascript:void(0)" class="clear-noti">Clear All </a></div>
-                    <div class="noti-content">
-                        <ul class="notification-list">
-                            <li class="notification-message"><a href="#">
-                                <div class="media"><span class="avatar avatar-sm"><img class="avatar-img rounded-circle"
-                                                                                       alt="User Image"
-                                                                                       src="static/picture/avatar-02.jpg"></span>
-                                    <div class="media-body"><p class="noti-details"><span class="noti-title">Carlson Tech</span>has
-                                        approved <span class="noti-title">your estimate</span></p>
-                                        <p class="noti-time"><span class="notification-time">4 mins ago</span></p></div>
-                                </div>
-                            </a></li>
-                            <li class="notification-message"><a href="#">
-                                <div class="media"><span class="avatar avatar-sm"><img class="avatar-img rounded-circle"
-                                                                                       alt="User Image"
-                                                                                       src="static/picture/avatar-11.jpg"></span>
-                                    <div class="media-body"><p class="noti-details"><span class="noti-title">International Software Inc</span>has
-                                        sent you a invoice in the amount of <span class="noti-title">$218</span></p>
-                                        <p class="noti-time"><span class="notification-time">6 mins ago</span></p></div>
-                                </div>
-                            </a></li>
-                            <li class="notification-message"><a href="#">
-                                <div class="media"><span class="avatar avatar-sm"><img class="avatar-img rounded-circle"
-                                                                                       alt="User Image"
-                                                                                       src="static/picture/avatar-17.jpg"></span>
-                                    <div class="media-body"><p class="noti-details"><span
-                                            class="noti-title">John Hendry</span>sent a cancellation request <span
-                                            class="noti-title">Apple iPhone XR</span></p>
-                                        <p class="noti-time"><span class="notification-time">8 mins ago</span></p></div>
-                                </div>
-                            </a></li>
-                            <li class="notification-message"><a href="#">
-                                <div class="media"><span class="avatar avatar-sm"><img class="avatar-img rounded-circle"
-                                                                                       alt="User Image"
-                                                                                       src="static/picture/avatar-13.jpg"></span>
-                                    <div class="media-body"><p class="noti-details"><span class="noti-title">Mercury Software Inc</span>added
-                                        a new product <span class="noti-title">Apple MacBook Pro</span></p>
-                                        <p class="noti-time"><span class="notification-time">12 mins ago</span></p>
-                                    </div>
-                                </div>
-                            </a></li>
-                        </ul>
-                    </div>
-                    <div class="topnav-dropdown-footer"><a href="#">View all Notifications</a></div>
-                </div>
-            </li><!-- /Notifications --><!-- User Menu -->
+            <!-- /Notifications --><!-- User Menu -->
             <li class="nav-item dropdown has-arrow"><a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown"><span
                     class="user-img"><img class="rounded-circle" src="static/picture/avatar-01.jpg" width="31"
                                           alt="Ryan Taylor"></span></a>
@@ -90,9 +40,9 @@
             <div id="sidebar-menu" class="sidebar-menu">
                 <ul>
                     <li class="menu-title"><span>主菜单</span></li>
-                    <li><a href="{{ url_for('teacher.stulist') }}"><i class="fas fa-th-large"></i><span>学生列表</span></a></li>
+                    <li><a href="{{ url_for('teacher.index') }}"><i class="fas fa-comment-dollar"></i><span>个人中心</span></a></li>
+                    <li ><a href="{{ url_for('teacher.stulist') }}"><i class="fas fa-user-friends"></i><span>学生列表</span></a></li>
                     <li class="active"><a href="{{ url_for('teacher.titlist') }}"><i class="fas fa-holly-berry"></i><span>选题列表</span></a></li>
-                    <li><a href="{{ url_for('teacher.info') }}"><i class="fas fa-comment-dollar"></i><span>个人中心</span></a></li>
                     <li><a href="{{ url_for('teacher.stuapp') }}"><i class="fas fa-clipboard-list"></i><span>学生申请</span></a></li>
                     <li><a href="{{ url_for('teacher.titapp') }}"><i class="fas fa-calendar-day"></i><span>选题申请</span></a></li>
                 </ul>
@@ -131,10 +81,8 @@
                                         <td>5</td>
                                         <td>6</td>
                                         <td class="text-right">
-                                            <div class="actions"><a href="edit-subject.html"
-                                                                    class="btn btn-sm bg-success-light mr-2"><i
-                                                    class="fas fa-pen"></i></a><a href="#"
-                                                                                  class="btn btn-sm bg-danger-light"><i
+                                            <div class="actions"><a href="#" class="btn btn-sm bg-success-light mr-2" data-toggle="modal" data-target="#editModal"><i
+                                                    class="fas fa-pen"></i></a><a href="#" class="btn btn-sm bg-danger-light" data-toggle="modal" data-target="#conModal"><i
                                                     class="fas fa-trash"></i></a></div>
                                         </td>
 
@@ -148,62 +96,14 @@
                                             <div class="actions"><a href="edit-subject.html"
                                                                     class="btn btn-sm bg-success-light mr-2"><i
                                                     class="fas fa-pen"></i></a><a href="#"
-                                                                                  class="btn btn-sm bg-danger-light"><i
+                                                                                  class="btn btn-sm bg-danger-light" data-toggle="modal" data-target="#conModal"><i
                                                     class="fas fa-trash"></i></a></div>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td>PRE2143</td>
-                                        <td><h2><a>Science</a></h2></td>
-                                        <td>3</td>
-                                        <td>6</td>
-                                        <td class="text-right">
-                                            <div class="actions"><a href="edit-subject.html"
-                                                                    class="btn btn-sm bg-success-light mr-2"><i
-                                                    class="fas fa-pen"></i></a><a href="#"
-                                                                                  class="btn btn-sm bg-danger-light"><i
-                                                    class="fas fa-trash"></i></a></div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>PRE2431</td>
-                                        <td><h2><a>Geography</a></h2></td>
-                                        <td>8</td>
-                                        <td>6</td>
-                                        <td class="text-right">
-                                            <div class="actions"><a href="edit-subject.html"
-                                                                    class="btn btn-sm bg-success-light mr-2"><i
-                                                    class="fas fa-pen"></i></a><a href="#"
-                                                                                  class="btn btn-sm bg-danger-light"><i
-                                                    class="fas fa-trash"></i></a></div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>PRE1534</td>
-                                        <td><h2><a>Botony</a></h2></td>
-                                        <td>9</td>
-                                        <td>6</td>
-                                        <td class="text-right">
-                                            <div class="actions"><a href="edit-subject.html"
-                                                                    class="btn btn-sm bg-success-light mr-2"><i
-                                                    class="fas fa-pen"></i></a><a href="#"
-                                                                                  class="btn btn-sm bg-danger-light"><i
-                                                    class="fas fa-trash"></i></a></div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>PRE2153</td>
-                                        <td><h2><a>English</a></h2></td>
-                                        <td>4</td>
-                                        <td>6</td>
-                                        <td class="text-right">
-                                            <div class="actions"><a href="edit-subject.html"
-                                                                    class="btn btn-sm bg-success-light mr-2"><i
-                                                    class="fas fa-pen"></i></a><a href="#"
-                                                                                  class="btn btn-sm bg-danger-light"><i
-                                                    class="fas fa-trash"></i></a></div>
-                                        </td>
-                                    </tr>
+
+
+
+
                                     </tbody>
                                 </table>
                             </div>
@@ -211,6 +111,55 @@
                     </div>
                 </div>
             </div>
+
+                <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="editModalLabel">编辑数据</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true"></span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form method="post" id="myform" action="/teacher/edittit">
+                                    <input type="hidden" id="rowId" name="rowId">
+                                    <label>编号</label> <input id="number" value="123">
+                                    <label>名称</label> <input id="name" value="123">
+                                    <label>指导老师</label> <input id="teacher" value="123">
+                                    <label>学生</label> <input id="student" value="123">
+                                    <label>研究方向</label> <input id="research" value="123">
+                                    <label>具体信息</label> <input id="info" value="123">
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+                                <button type="button" class="btn btn-primary" onclick="document.getElementById('myform').submit()">保存更改</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal fade" id="conModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="conModalLabel">退选确认</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true"></span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form method="post" id="tuiform" action="/teacher/titlist">
+                                    <input type="hidden" id="row_id" name="rowid">
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+                                <button type="button" class="btn btn-primary" onclick="document.getElementById('tuiform').submit()">确认退选</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
         </div><!-- Footer -->
         <!-- /Footer --></div>
     <!-- /Page Wrapper --></div><!-- /Main Wrapper --><!-- jQuery -->
@@ -220,5 +169,50 @@
 <script src="static/js/jquery.slimscroll.min.js"></script><!-- Datatables JS -->
 <script src="static/js/datatables.min.js"></script><!-- Custom JS -->
 <script src="static/js/script.js"></script>
+    <script>// 获取所有的退选按钮
+    var cancelBtns = document.getElementsByClassName('btn btn-sm bg-danger-light');
+
+    // 为每个退选按钮添加点击事件处理器
+    for (var i = 0; i < cancelBtns.length; i++) {
+        cancelBtns[i].addEventListener('click', function() {
+            // 获取这一行的数据
+            var row = this.parentNode.parentNode.parentNode;
+            var projectId = row.cells[0].innerText; // 假设项目编号在第一个单元格
+console.log(projectId)
+            // 将项目编号设置为隐藏输入字段的值
+            document.getElementById('row_id').value = projectId;
+
+            // 提交表单
+
+        });
+    }</script>
+    <script>
+        // 获取所有的编辑按钮
+        var editBtns = document.getElementsByClassName('btn btn-sm bg-success-light mr-2');
+
+        // 为每个编辑按钮添加点击事件处理器
+        for (var i = 0; i < editBtns.length; i++) {
+            editBtns[i].addEventListener('click', function() {
+                // 获取这一行的数据
+                var row = this.parentNode.parentNode.parentNode;
+                var data1 = row.cells[0].innerText;
+                var data2 = row.cells[1].innerText;
+                var data3 = row.cells[2].innerText;
+                var data4 = row.cells[3].innerText;
+                var data5 = row.cells[4].innerText;
+
+                // 将数据填充到模态框的表单中
+                document.getElementById('number').value = data1;
+                document.getElementById('name').value = data2;
+                document.getElementById('teacher').value = data3;
+                document.getElementById('student').value = data4;
+                document.getElementById('research').value = data5;
+
+                // 将行的唯一标识符设置为隐藏输入字段的值
+                // 这里假设你的行的唯一标识符是第一个单元格的内容
+                document.getElementById('rowId').value = data1;
+            });
+        }
+    </script>
 </body>
 </html>

@@ -21,58 +21,7 @@
                 href="javascript:void(0);" id="toggle_btn"><i class="fas fa-align-left"></i></a><!-- Search Bar -->
         <!-- /Search Bar --><!-- Mobile Menu Toggle --><a class="mobile_btn" id="mobile_btn"><i
                 class="fas fa-bars"></i></a><!-- /Mobile Menu Toggle --><!-- Header Right Menu -->
-        <ul class="nav user-menu"><!-- Notifications -->
-            <li class="nav-item dropdown noti-dropdown"><a href="#" class="dropdown-toggle nav-link"
-                                                           data-toggle="dropdown"><i class="far fa-bell"></i><span
-                    class="badge badge-pill">3</span></a>
-                <div class="dropdown-menu notifications">
-                    <div class="topnav-dropdown-header"><span class="notification-title">通知</span><a
-                            href="javascript:void(0)" class="clear-noti">Clear All </a></div>
-                    <div class="noti-content">
-                        <ul class="notification-list">
-                            <li class="notification-message"><a href="#">
-                                <div class="media"><span class="avatar avatar-sm"><img class="avatar-img rounded-circle"
-                                                                                       alt="User Image"
-                                                                                       src="static/picture/avatar-02.jpg"></span>
-                                    <div class="media-body"><p class="noti-details"><span class="noti-title">Carlson Tech</span>has
-                                        approved <span class="noti-title">your estimate</span></p>
-                                        <p class="noti-time"><span class="notification-time">4 mins ago</span></p></div>
-                                </div>
-                            </a></li>
-                            <li class="notification-message"><a href="#">
-                                <div class="media"><span class="avatar avatar-sm"><img class="avatar-img rounded-circle"
-                                                                                       alt="User Image"
-                                                                                       src="static/picture/avatar-11.jpg"></span>
-                                    <div class="media-body"><p class="noti-details"><span class="noti-title">International Software Inc</span>has
-                                        sent you a invoice in the amount of <span class="noti-title">$218</span></p>
-                                        <p class="noti-time"><span class="notification-time">6 mins ago</span></p></div>
-                                </div>
-                            </a></li>
-                            <li class="notification-message"><a href="#">
-                                <div class="media"><span class="avatar avatar-sm"><img class="avatar-img rounded-circle"
-                                                                                       alt="User Image"
-                                                                                       src="static/picture/avatar-17.jpg"></span>
-                                    <div class="media-body"><p class="noti-details"><span
-                                            class="noti-title">John Hendry</span>sent a cancellation request <span
-                                            class="noti-title">Apple iPhone XR</span></p>
-                                        <p class="noti-time"><span class="notification-time">8 mins ago</span></p></div>
-                                </div>
-                            </a></li>
-                            <li class="notification-message"><a href="#">
-                                <div class="media"><span class="avatar avatar-sm"><img class="avatar-img rounded-circle"
-                                                                                       alt="User Image"
-                                                                                       src="static/picture/avatar-13.jpg"></span>
-                                    <div class="media-body"><p class="noti-details"><span class="noti-title">Mercury Software Inc</span>added
-                                        a new product <span class="noti-title">Apple MacBook Pro</span></p>
-                                        <p class="noti-time"><span class="notification-time">12 mins ago</span></p>
-                                    </div>
-                                </div>
-                            </a></li>
-                        </ul>
-                    </div>
-                    <div class="topnav-dropdown-footer"><a href="#">查看所有通知</a></div>
-                </div>
-            </li><!-- /Notifications --><!-- User Menu -->
+        <ul class="nav user-menu"><!-- Notifications --><!-- /Notifications --><!-- User Menu -->
             <li class="nav-item dropdown has-arrow"><a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown"><span
                     class="user-img"><img class="rounded-circle" src="static/picture/avatar-01.jpg" width="31"
                                           alt="Ryan Taylor"></span></a>
@@ -100,19 +49,26 @@
     <div class="page-wrapper">
         <div class="content container-fluid"><!-- Page Header -->
             <div class="page-header">
+            </div>
                 <div class="row align-items-center">
                     <div class="col"><h3 class="page-title">选题信息</h3>
-                        <ul class="breadcrumb">
-                        </ul>
                     </div>
+                    <div class="col-auto text-right float-right ml-auto"><a href="add-fees-collection.html" class="btn btn-primary" data-toggle="modal" data-target="#creModal"><i
+                            class="fas fa-plus"></i></a></div>
                 </div><!-- /Page Header -->
             <div class="row">
                 <div class="col-sm-12">
                     <div class="card card-table">
                         <div class="card-body">
-                            <form class="form-inline">
-                                <select class="form-control mr-sm-2">
-                                    <option selected>Choose...</option>
+                            <form class="form-inline" method="get">
+                                <select class="form-control mr-sm-2" name="select1" >
+                                    <option selected>学院</option>
+                                    <option value="1">Section 1</option>
+                                    <option value="2">Section 2</option>
+                                    <option value="3">Section 3</option>
+                                </select>
+                                <select class="form-control mr-sm-2" name="select2" >
+                                    <option selected>科目</option>
                                     <option value="1">Section 1</option>
                                     <option value="2">Section 2</option>
                                     <option value="3">Section 3</option>
@@ -147,206 +103,9 @@
                                         <td>097 3584 5870</td>
                                         <td>911 Deer Ridge Drive,USA</td>
                                         <td class="text-right">
-                                            <div class="actions"><a href="edit-student.html"
-                                                                    class="btn btn-sm bg-success-light mr-2"><i
-                                                    class="fas fa-pen"></i></a><a href="#"
-                                                                                  class="btn btn-sm bg-danger-light"><i
-                                                    class="fas fa-trash"></i></a></div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>PRE2213</td>
-                                        <td><h2 class="table-avatar"><a href="student-details.html"
-                                                                        class="avatar avatar-sm mr-2"><img
-                                                class="avatar-img rounded-circle" src="static/picture/avatar-03.jpg"
-                                                alt="User Image"></a><a href="student-details.html">Malynne</a></h2>
-                                        </td>
-                                        <td>8 A</td>
-                                        <td>3 June 2010</td>
-                                        <td>Fields Malynne</td>
-                                        <td>242 362 3100</td>
-                                        <td>Bacardi Rd P.O. Box N-4880,New Providence</td>
-                                        <td class="text-right">
-                                            <div class="actions"><a href="edit-student.html"
-                                                                    class="btn btn-sm bg-success-light mr-2"><i
-                                                    class="fas fa-pen"></i></a><a href="#"
-                                                                                  class="btn btn-sm bg-danger-light"><i
-                                                    class="fas fa-trash"></i></a></div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>PRE2143</td>
-                                        <td><h2 class="table-avatar"><a href="student-details.html"
-                                                                        class="avatar avatar-sm mr-2"><img
-                                                class="avatar-img rounded-circle" src="static/picture/avatar-02.jpg"
-                                                alt="User Image"></a><a href="student-details.html">Levell Scott</a>
-                                        </h2></td>
-                                        <td>10 A</td>
-                                        <td>12 Apr 2002</td>
-                                        <td>Jeffrey Scott</td>
-                                        <td>026 7318 4366</td>
-                                        <td>P.O. Box:41,Gaborone</td>
-                                        <td class="text-right">
-                                            <div class="actions"><a href="edit-student.html"
-                                                                    class="btn btn-sm bg-success-light mr-2"><i
-                                                    class="fas fa-pen"></i></a><a href="#"
-                                                                                  class="btn btn-sm bg-danger-light"><i
-                                                    class="fas fa-trash"></i></a></div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>PRE2431</td>
-                                        <td><h2 class="table-avatar"><a href="student-details.html"
-                                                                        class="avatar avatar-sm mr-2"><img
-                                                class="avatar-img rounded-circle" src="static/picture/avatar-03.jpg"
-                                                alt="User Image"></a><a href="student-details.html">Minnie</a></h2></td>
-                                        <td>11 C</td>
-                                        <td>24 Feb 2000</td>
-                                        <td>J Shaffer</td>
-                                        <td>952 512 4909</td>
-                                        <td>4771 Oral Lake Road,Golden Valley</td>
-                                        <td class="text-right">
-                                            <div class="actions"><a href="edit-student.html"
-                                                                    class="btn btn-sm bg-success-light mr-2"><i
-                                                    class="fas fa-pen"></i></a><a href="#"
-                                                                                  class="btn btn-sm bg-danger-light"><i
-                                                    class="fas fa-trash"></i></a></div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>PRE1534</td>
-                                        <td><h2 class="table-avatar"><a href="student-details.html"
-                                                                        class="avatar avatar-sm mr-2"><img
-                                                class="avatar-img rounded-circle" src="static/picture/avatar-04.jpg"
-                                                alt="User Image"></a><a href="student-details.html">Lois A</a></h2></td>
-                                        <td>10 A</td>
-                                        <td>22 Jul 2006</td>
-                                        <td>Cleary Wong</td>
-                                        <td>413 289 1314</td>
-                                        <td>2844 Leverton Cove Road,Palmer</td>
-                                        <td class="text-right">
-                                            <div class="actions"><a href="edit-student.html"
-                                                                    class="btn btn-sm bg-success-light mr-2"><i
-                                                    class="fas fa-pen"></i></a><a href="#"
-                                                                                  class="btn btn-sm bg-danger-light"><i
-                                                    class="fas fa-trash"></i></a></div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>PRE2153</td>
-                                        <td><h2 class="table-avatar"><a href="student-details.html"
-                                                                        class="avatar avatar-sm mr-2"><img
-                                                class="avatar-img rounded-circle" src="static/picture/avatar-05.jpg"
-                                                alt="User Image"></a><a href="student-details.html">Calvin</a></h2></td>
-                                        <td>9 B</td>
-                                        <td>8 Dec 2003</td>
-                                        <td>Minnie J Shaffer</td>
-                                        <td>701 753 3810</td>
-                                        <td>1900 Hidden Meadow Drive,Crete</td>
-                                        <td class="text-right">
-                                            <div class="actions"><a href="edit-student.html"
-                                                                    class="btn btn-sm bg-success-light mr-2"><i
-                                                    class="fas fa-pen"></i></a><a href="#"
-                                                                                  class="btn btn-sm bg-danger-light"><i
-                                                    class="fas fa-trash"></i></a></div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>PRE1252</td>
-                                        <td><h2 class="table-avatar"><a href="student-details.html"
-                                                                        class="avatar avatar-sm mr-2"><img
-                                                class="avatar-img rounded-circle" src="static/picture/avatar-06.jpg"
-                                                alt="User Image"></a><a href="student-details.html">Joe Kelley</a></h2>
-                                        </td>
-                                        <td>11 C</td>
-                                        <td>7 Oct 2000</td>
-                                        <td>Vincent Howard</td>
-                                        <td>402 221 7523</td>
-                                        <td>3979 Ashwood Drive,Omaha</td>
-                                        <td class="text-right">
-                                            <div class="actions"><a href="edit-student.html"
-                                                                    class="btn btn-sm bg-success-light mr-2"><i
-                                                    class="fas fa-pen"></i></a><a href="#"
-                                                                                  class="btn btn-sm bg-danger-light"><i
-                                                    class="fas fa-trash"></i></a></div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>PRE1434</td>
-                                        <td><h2 class="table-avatar"><a href="student-details.html"
-                                                                        class="avatar avatar-sm mr-2"><img
-                                                class="avatar-img rounded-circle" src="static/picture/avatar-07.jpg"
-                                                alt="User Image"></a><a href="student-details.html">Vincent</a></h2>
-                                        </td>
-                                        <td>10 A</td>
-                                        <td>4 Jan 2002</td>
-                                        <td>Kelley Joe</td>
-                                        <td>402 221 7523</td>
-                                        <td>3979 Ashwood Drive,Omaha</td>
-                                        <td class="text-right">
-                                            <div class="actions"><a href="edit-student.html"
-                                                                    class="btn btn-sm bg-success-light mr-2"><i
-                                                    class="fas fa-pen"></i></a><a href="#"
-                                                                                  class="btn btn-sm bg-danger-light"><i
-                                                    class="fas fa-trash"></i></a></div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>PRE2345</td>
-                                        <td><h2 class="table-avatar"><a href="student-details.html"
-                                                                        class="avatar avatar-sm mr-2"><img
-                                                class="avatar-img rounded-circle" src="static/picture/avatar-08.jpg"
-                                                alt="User Image"></a><a href="student-details.html">Kozma Tatari</a>
-                                        </h2></td>
-                                        <td>9 A</td>
-                                        <td>1 Feb 2006</td>
-                                        <td>Lombardi</td>
-                                        <td>04 2239 968</td>
-                                        <td>Rruga E Kavajes,Condor Center,Tirana</td>
-                                        <td class="text-right">
-                                            <div class="actions"><a href="edit-student.html"
-                                                                    class="btn btn-sm bg-success-light mr-2"><i
-                                                    class="fas fa-pen"></i></a><a href="#"
-                                                                                  class="btn btn-sm bg-danger-light"><i
-                                                    class="fas fa-trash"></i></a></div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>PRE2365</td>
-                                        <td><h2 class="table-avatar"><a href="student-details.html"
-                                                                        class="avatar avatar-sm mr-2"><img
-                                                class="avatar-img rounded-circle" src="static/picture/avatar-09.jpg"
-                                                alt="User Image"></a><a href="student-details.html">John Chambers</a>
-                                        </h2></td>
-                                        <td>11 B</td>
-                                        <td>13 Sept 2003</td>
-                                        <td>Wong Jeffrey</td>
-                                        <td>870 663 2334</td>
-                                        <td>4667 Sunset Drive,Pine Bluff</td>
-                                        <td class="text-right">
-                                            <div class="actions"><a href="edit-student.html"
-                                                                    class="btn btn-sm bg-success-light mr-2"><i
-                                                    class="fas fa-pen"></i></a><a href="#"
-                                                                                  class="btn btn-sm bg-danger-light"><i
-                                                    class="fas fa-trash"></i></a></div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>PRE1234</td>
-                                        <td><h2 class="table-avatar"><a href="student-details.html"
-                                                                        class="avatar avatar-sm mr-2"><img
-                                                class="avatar-img rounded-circle" src="static/picture/avatar-10.jpg"
-                                                alt="User Image"></a><a href="student-details.html">Nathan Humphries</a>
-                                        </h2></td>
-                                        <td>10 B</td>
-                                        <td>26 Apr 1994</td>
-                                        <td>Stephen Marley</td>
-                                        <td>077 3499 9959</td>
-                                        <td>86 Lamphey Road,Thelnetham</td>
-                                        <td class="text-right">
-                                            <div class="actions"><a href="edit-student.html"
-                                                                    class="btn btn-sm bg-success-light mr-2"><i
-                                                    class="fas fa-pen"></i></a><a href="#"
+                                            <div class="actions"><a href="#"
+                                                                    class="btn btn-sm bg-success-light mr-2" data-toggle="modal" data-target="#editModal"><i
+                                                    class="fas fa-pen"></i></a><a href="/admin/stulist?stuid={{ username }}&st=0"
                                                                                   class="btn btn-sm bg-danger-light"><i
                                                     class="fas fa-trash"></i></a></div>
                                         </td>
@@ -354,6 +113,61 @@
                                     </tbody>
                                 </table>
                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+                <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="editModalLabel">编辑数据</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true"></span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form method="post" id="myform" >
+                                    <input type="hidden" id="rowId" name="rowId">
+                                    <label>编号</label> <input id="number" value="123">
+                                    <label>名称</label> <input id="name" value="123">
+                                    <label>指导老师</label> <input id="teacher" value="123">
+                                    <label>学生</label> <input id="student" value="123">
+                                    <label>研究方向</label> <input id="research" value="123">
+                                    <label>具体信息</label> <input id="info" value="123">
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+                                <button type="button" class="btn btn-primary" onclick="document.getElementById('myform').submit()">保存更改</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            <div class="modal fade" id="creModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="editModalLabel">编辑数据</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true"></span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form method="post" id="crform" action="/admin/addstu">
+                                <label>编号</label> <input id="number" value="123">
+                                <label>名称</label> <input id="name" value="123">
+                                <label>指导老师</label> <input id="teacher" value="123">
+                                <label>学生</label> <input id="student" value="123">
+                                <label>研究方向</label> <input id="research" value="123">
+                                <label>具体信息</label> <input id="info" value="123">
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+                            <button type="button" class="btn btn-primary" onclick="document.getElementById('crform').submit()">创建</button>
                         </div>
                     </div>
                 </div>
@@ -366,5 +180,33 @@
 <script src="static/js/jquery.slimscroll.min.js"></script><!-- Datatables JS -->
 <script src="static/js/datatables.min.js"></script><!-- Custom JS -->
 <script src="static/js/script.js"></script>
+        <script>
+            // 获取所有的编辑按钮
+            var editBtns = document.getElementsByClassName('btn btn-sm bg-success-light mr-2');
+
+            // 为每个编辑按钮添加点击事件处理器
+            for (var i = 0; i < editBtns.length; i++) {
+                editBtns[i].addEventListener('click', function() {
+                    // 获取这一行的数据
+                    var row = this.parentNode.parentNode.parentNode;
+                    var data1 = row.cells[0].innerText;
+                    var data2 = row.cells[1].innerText;
+                    var data3 = row.cells[2].innerText;
+                    var data4 = row.cells[3].innerText;
+                    var data5 = row.cells[4].innerText;
+
+                    // 将数据填充到模态框的表单中
+                    document.getElementById('number').value = data1;
+                    document.getElementById('name').value = data2;
+                    document.getElementById('teacher').value = data3;
+                    document.getElementById('student').value = data4;
+                    document.getElementById('research').value = data5;
+
+                    // 将行的唯一标识符设置为隐藏输入字段的值
+                    // 这里假设你的行的唯一标识符是第一个单元格的内容
+                    document.getElementById('rowId').value = data1;
+                });
+            }
+        </script>
 </body>
 </html>

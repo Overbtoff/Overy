@@ -15,8 +15,8 @@
 <body><!-- Main Wrapper -->
 <div class="main-wrapper"><!-- Header -->
     <div class="header"><!-- Logo -->
-        <div class="header-left"><a href="index.html" class="logo"><img src="static/picture/logo1.png" alt="Logo"></a><a
-                href="index.html" class="logo logo-small"><img src="static/picture/logo-small1.png" alt="Logo" width="30"
+        <div class="header-left"><a href="{{ url_for('index') }}" class="logo"><img src="static/picture/logo1.png" alt="Logo"></a><a
+                href="{{ url_for('index') }}" class="logo logo-small"><img src="static/picture/logo-small1.png" alt="Logo" width="30"
                                                                height="30"></a></div><!-- /Logo --><a
                 href="javascript:void(0);" id="toggle_btn"><i class="fas fa-align-left"></i></a><!-- Search Bar -->
         <!-- /Search Bar --><!-- Mobile Menu Toggle --><a class="mobile_btn" id="mobile_btn"><i
@@ -39,7 +39,7 @@
             <div id="sidebar-menu" class="sidebar-menu">
                 <ul>
                     <li class="menu-title"><span>主菜单</span></li>
-                    <li><a href="{{ url_for('student.info') }}"><i class="fas fa-th-large"></i><span>个人信息</span></a></li>
+                    <li><a href="{{ url_for('student.index') }}"><i class="fas fa-th-large"></i><span>个人信息</span></a></li>
                     <li class="active"><a href="{{ url_for('student.titlist')}}"><i class="fas fa-holly-berry"></i><span>选题列表</span></a></li>
                     <li><a href="{{ url_for('student.tealist') }}"><i class="fas fa-comment-dollar"></i><span>老师列表</span></a></li>
                 </ul>
@@ -59,9 +59,15 @@
                 <div class="col-sm-12">
                     <div class="card card-table">
                         <div class="card-body">
-                            <form class="form-inline">
-                                <select class="form-control mr-sm-2">
-                                    <option selected>Choose...</option>
+                            <form class="form-inline" method="get">
+                                <select class="form-control mr-sm-2" name="select1" >
+                                    <option selected>学院</option>
+                                    <option value="1">Section 1</option>
+                                    <option value="2">Section 2</option>
+                                    <option value="3">Section 3</option>
+                                </select>
+                                <select class="form-control mr-sm-2" name="select2" >
+                                    <option selected>老师</option>
                                     <option value="1">Section 1</option>
                                     <option value="2">Section 2</option>
                                     <option value="3">Section 3</option>
@@ -76,8 +82,9 @@
                                         <th>编号</th>
                                         <th>题目名称</th>
                                         <th>指导老师</th>
-                                        <th>研究方向</th>
                                         <th>具体信息</th>
+                                        <th>截止日期</th>
+                                        <th>操作</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -86,10 +93,11 @@
                                         <td><h2><a>Mathematics</a></h2></td>
                                         <td>5</td>
                                         <td>6</td>
+                                        <td>2021-06-30</td>
                                         <td class="text-right">
-                                            <div class="actions"><a href="{{ url_for('student.app')}}"
+                                            <div class="actions"><a href="/student/titlist?stuid={{ username }}&st=1"
                                                                     class="btn btn-sm bg-success-light mr-2"><i
-                                                    class="fas fa-pen"></i></a><a href="#"
+                                                    class="fas fa-pen"></i></a><a href="/student/titlist?stuid={{ username }}&st=0"
                                                                                   class="btn btn-sm bg-danger-light"><i
                                                     class="fas fa-trash"></i></a></div>
                                         </td>
@@ -99,6 +107,7 @@
                                         <td><h2><a>History</a></h2></td>
                                         <td>6</td>
                                         <td>6</td>
+                                        <td>2021-06-30</td>
                                         <td class="text-right">
                                             <div class="actions"><a href="edit-subject.html"
                                                                     class="btn btn-sm bg-success-light mr-2"><i
@@ -112,6 +121,7 @@
                                         <td><h2><a>Science</a></h2></td>
                                         <td>3</td>
                                         <td>6</td>
+                                        <td>2021-06-30</td>
                                         <td class="text-right">
                                             <div class="actions"><a href="edit-subject.html"
                                                                     class="btn btn-sm bg-success-light mr-2"><i
@@ -125,6 +135,7 @@
                                         <td><h2><a>Geography</a></h2></td>
                                         <td>8</td>
                                         <td>6</td>
+                                        <td>2021-06-30</td>
                                         <td class="text-right">
                                             <div class="actions"><a href="edit-subject.html"
                                                                     class="btn btn-sm bg-success-light mr-2"><i
@@ -138,6 +149,7 @@
                                         <td><h2><a>Botony</a></h2></td>
                                         <td>9</td>
                                         <td>6</td>
+                                        <td>2021-06-30</td>
                                         <td class="text-right">
                                             <div class="actions"><a href="edit-subject.html"
                                                                     class="btn btn-sm bg-success-light mr-2"><i
@@ -151,6 +163,7 @@
                                         <td><h2><a>English</a></h2></td>
                                         <td>4</td>
                                         <td>6</td>
+                                        <td>2021-06-30</td>
                                         <td class="text-right">
                                             <div class="actions"><a href="edit-subject.html"
                                                                     class="btn btn-sm bg-success-light mr-2"><i
