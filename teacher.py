@@ -1,5 +1,6 @@
-from flask import Blueprint, render_template,session,request,redirect,url_for
-
+from flask import Blueprint, render_template,session,request,redirect,url_for,send_file
+from dbconn import conn,cursor
+import io
 teacher = Blueprint('teacher', __name__,static_folder='static')
 
 
@@ -66,5 +67,15 @@ def edittit():
             print(value)
     return redirect(url_for('teacher.titlist'))
 
+@teacher.route('/down/<pr>/<stu>',methods=['GET','POST'])
+def down(pr,stu):
+    sql = "SELECT blob_data FROM blob_table WHERE PROJECT = :pr AND STUDENT = :stu"
+    cursor.execute(sql, {'pr': pr, 'stu': stu})
+    row = cursor.fetchone()
+    blob_data = row[0].read()
+    # 创建一个BytesIO对象
+    file_io = io.BytesIO(blob_data)
+    # 使用send_file函数发送文件
+    return send_file(file_io, as_attachment=True, mimetype='application/octet-stream')
 
 

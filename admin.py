@@ -53,11 +53,4 @@ def addtea():
 def addtit():
     if request.method == 'POST':
         return redirect(url_for('admin.titlist'))
-# @admin.route('/down',methods=['GET','POST'])
-# def down():
-#     # 从数据库中获取文件
-#     #with open('static/1.txt', 'rb') as file_data :
-#     # 创建一个BytesIO对象
-#     #file_io = io.BytesIO(file_data)
-#     # 使用send_file函数发送文件
-#     return send_file(file_io, as_attachment=True, mimetype='application/octet-stream')
+
