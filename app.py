@@ -53,7 +53,7 @@ def index():
                             name = j[0]
                         session['username'] = name
                         session['role'] = '学生'
-                        print('yes')
+                        session['id'] = username
                         return redirect(url_for('student.index'))
             if username[0]=='1':
                 sql="SELECT USER_TEACHER_ID,USER_TEACHER_PASSWORDHASH FROM USER_TEACHER WHERE USER_TEACHER_ID=:username"
@@ -70,6 +70,7 @@ def index():
                             name = j[0]
                         session['username'] = name
                         session['role'] = '老师'
+                        session['id'] = username
                         return redirect(url_for('teacher.index'))
             if username[0]=='0':
                 sql="SELECT USER_ADMIN_ID,USER_ADMIN_PASSWORDHASH,USER_ADMIN_NAME FROM USER_ADMIN WHERE USER_ADMIN_ID=:username"
@@ -80,6 +81,7 @@ def index():
                         session['logged_in'] = True
                         session['username'] = i[2]
                         session['role'] = '管理员'
+                        session['id'] = username
                         return redirect(url_for('admin.index'))
             if username[0]=='2':
                 sql="SELECT USER_TEACHER_ID,USER_TEACHER_PASSWORDHASH FROM USER_TEACHER WHERE USER_TEACHER_ID=:username"
@@ -96,6 +98,7 @@ def index():
                             name = j[0]
                         session['username'] = name
                         session['role'] = '系主任'
+                        session['id'] = username
                         return redirect(url_for('teacher.index'))
             return render_template('login.html',error='用户名或密码错误')
         else:
@@ -105,6 +108,8 @@ def index():
 def logout():
     session.pop('logged_in', None)
     session.pop('username', None)
+    session.pop('role', None)
+    session.pop('id',None)
     return redirect(url_for('index'))
 
 if __name__ == '__main__':
