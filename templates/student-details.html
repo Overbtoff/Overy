@@ -15,34 +15,14 @@
 <body><!-- Main Wrapper -->
 <div class="main-wrapper"><!-- Header -->
     <div class="header"><!-- Logo -->
-        <div class="header-left"><a href="index.html" class="logo"><img src="static/picture/logo1.png" alt="Logo"></a><a
-                href="index.html" class="logo logo-small"><img src="static/picture/logo-small1.png" alt="Logo" width="30"
+        <div class="header-left"><a href="{{ url_for('student.index') }}" class="logo"><img src="static/picture/logo1.png" alt="Logo"></a><a
+                href="{{ url_for('student.index') }}" class="logo logo-small"><img src="static/picture/logo-small1.png" alt="Logo" width="30"
                                                                height="30"></a></div><!-- /Logo --><a
                 href="javascript:void(0);" id="toggle_btn"><i class="fas fa-align-left"></i></a><!-- Search Bar -->
         <!-- /Search Bar --><!-- Mobile Menu Toggle --><a class="mobile_btn" id="mobile_btn"><i
                 class="fas fa-bars"></i></a><!-- /Mobile Menu Toggle --><!-- Header Right Menu -->
         <ul class="nav user-menu"><!-- Notifications -->
-            <li class="nav-item dropdown noti-dropdown"><a href="#" class="dropdown-toggle nav-link"
-                                                           data-toggle="dropdown"><i class="far fa-bell"></i><span
-                    class="badge badge-pill">3</span></a>
-                <div class="dropdown-menu notifications">
-                    <div class="topnav-dropdown-header"><span class="notification-title">Notifications</span><a
-                            href="javascript:void(0)" class="clear-noti">Clear All </a></div>
-                    <div class="noti-content">
-                        <ul class="notification-list">
-                            <li class="notification-message"><a href="#">
-                                <div class="media"><span class="avatar avatar-sm"><img class="avatar-img rounded-circle"
-                                                                                       alt="User Image"
-                                                                                       src="static/picture/avatar-02.jpg"></span>
-                                    <div class="media-body"><p class="noti-details"><span class="noti-title">Carlson Tech</span>has
-                                        approved <span class="noti-title">your estimate</span></p>
-                                        <p class="noti-time"><span class="notification-time">4 mins ago</span></p></div>
-                                </div>
-                            </a></li>
-                        </ul>
-                    </div>
-                </div>
-            </li><!-- /Notifications --><!-- User Menu -->
+            <!-- /Notifications --><!-- User Menu -->
             <li class="nav-item dropdown has-arrow"><a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown"><span
                     class="user-img"><img class="rounded-circle" src="static/picture/avatar-01.jpg" width="31"
                                           alt="Ryan Taylor"></span></a>
@@ -51,7 +31,7 @@
                         <div class="avatar avatar-sm"><img src="static/picture/avatar-01.jpg" alt="User Image"
                                                            class="avatar-img rounded-circle"></div>
                         <div class="user-text"><h6>{{username}}</h6>
-                            <p class="text-muted mb-0">学生</p></div>
+                            <p class="text-muted mb-0">{{role}}</p></div>
                     </div>
                     <a class="dropdown-item" href="{{ url_for('logout') }}">登出</a></div>
             </li><!-- /User Menu --></ul><!-- /Header Right Menu --></div><!-- /Header --><!-- Sidebar -->
@@ -60,7 +40,7 @@
             <div id="sidebar-menu" class="sidebar-menu">
                 <ul>
                     <li class="menu-title"><span>主菜单</span></li>
-                    <li class="active"><a href="{{ url_for('student.info') }}"><i class="fas fa-th-large"></i><span>个人信息</span></a></li>
+                    <li class="active"><a href="{{ url_for('student.index') }}"><i class="fas fa-th-large"></i><span>个人信息</span></a></li>
                     <li><a href="{{ url_for('student.titlist') }}"><i class="fas fa-holly-berry"></i><span>选题列表</span></a></li>
                     <li><a href="{{ url_for('student.tealist') }}"><i class="fas fa-comment-dollar"></i><span>老师列表</span></a></li>
                 </ul>
@@ -75,6 +55,7 @@
                     </div>
                 </div>
             </div>
+            {% for item in data1 %}
             <div class="card">
                 <div class="card-body">
                     <div class="row">
@@ -83,18 +64,16 @@
                                 <div class="media mt-3"><img src="static/picture/shuaiqideshasha.jpg" class="mr-3" alt="...">
                                     <div class="media-body">
                                         <ul>
-                                            <li><span class="title-span">姓名:</span><span class="info-span">沙普爱思</span>
+                                            <li><span class="title-span">姓名:</span><span class="info-span">{{item[0]}}</span>
                                             </li>
-                                            <li><span class="title-span">专业:</span><span class="info-span">软件工程</span>
+                                            <li><span class="title-span">性别:</span><span class="info-span">{{item[1]}}</span></li>
+                                            <li><span class="title-span">专业:</span><span class="info-span">{{item[2]}}</span>
                                             </li>
-                                            <li><span class="title-span">联系方式:</span><span class="info-span">123 4567 8910 </span>
+                                            <li><span class="title-span">联系方式:</span><span class="info-span">{{item[3]}}</span>
                                             </li>
-                                            <li><span class="title-span">邮箱:</span><span class="info-span">shashawoaini@gmail.com</span>
+                                            <li><span class="title-span">邮箱:</span><span class="info-span">{{item[4]}}</span>
                                             </li>
-                                            <li><span class="title-span">性别:</span><span
-                                                    class="info-span">男</span></li>
-                                            <li><span class="title-span">出生日期:</span><span
-                                                    class="info-span">2000.01.01</span></li>
+
                                         </ul>
                                     </div>
                                 </div>
@@ -107,12 +86,15 @@
                     </div>
                     <div class="row mt-2">
                         <div class="col-md-12">
-
+                            <a href="#" class="btn btn-sm bg-success-light mr-2" data-toggle="modal" data-target="#editModal"><i
+                                    class="fas fa-pen"></i></a>
                         </div>
                     </div>
 
                 </div>
             </div>
+            {% endfor %}
+
             <div class="row">
                 <div class="col-sm-12"><h3 class="page-title">个人选题</h3>
                 </div>
@@ -127,42 +109,107 @@
                                         <th>题目名称</th>
                                         <th>指导老师</th>
                                         <th>具体信息</th>
+                                        <th>截止日期</th>
                                         <th>状态</th>
+                                        <th>得分</th>
                                         <th class="text-right">操作</th>
                                     </tr>
                                     </thead>
                                     <tbody>
+                                    {% for item in data2 %}
                                     <tr>
-                                        <td>PRE2209</td>
-                                        <td><h2><a>Mathematics</a></h2></td>
-                                        <td>5</td>
-                                        <td>6</td>
-                                        <td>pass</td>
+                                        <td>{{item[0]}}</td>
+                                        <td><h2><a>{{item[1]}}</a></h2></td>
+                                        <td>{{item[2]}}</td>
+                                        <td>{{item[3]}}</td>
+                                        <td>{{item[4]}}</td>
+                                        <td>{{item[5]}}</td>
+                                        <td>{{item[6]}}</td>
                                         <td class="text-right">
-                                            <div class="actions"><a href="edit-subject.html"
-                                                                    class="btn btn-sm bg-success-light mr-2"><i
-                                                    class="fas fa-pen"></i></a><a href="#"
-                                                                                  class="btn btn-sm bg-danger-light"><i
+                                            <div class="actions"><a href="#" class="btn btn-sm bg-success-light mr-2" data-toggle="modal" data-target="#subModal">提交论文  <i
+                                                    class="fas fa-pen"></i></a><a href="#" class="btn btn-sm bg-success-light mr-2" data-toggle="modal" data-target="#conModal">退选  <i
                                                     class="fas fa-trash"></i></a></div>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td>PRE2213</td>
-                                        <td><h2><a>History</a></h2></td>
-                                        <td>6</td>
-                                        <td>6</td>
-                                        <td>pass</td>
-                                        <td class="text-right">
-                                            <div class="actions"><a href="edit-subject.html"
-                                                                    class="btn btn-sm bg-success-light mr-2">详情  <i
-                                                    class="fas fa-pen"></i></a><a href="#"
-                                                                                  class="btn btn-sm bg-danger-light">退选  <i
-                                                    class="fas fa-trash"></i></a></div>
-                                        </td>
-                                    </tr>
+                                    {% endfor %}
                                     </tbody>
                                 </table>
                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="modal fade" id="subModal" tabindex="-1" role="dialog" aria-labelledby="subModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="subModalLabel">论文提交</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true"></span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form method="post" id="subform" enctype="multipart/form-data" action="/student/uploadf">
+                                <input type="file" name="file" accept=".doc,.docx,.txt,.pdf"  id="file">
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+                            <button type="button" class="btn btn-primary" onclick="submitForm()">提交</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="conModal" tabindex="-1" role="dialog" aria-labelledby="conModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="conModalLabel">退选确认</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true"></span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+                            <a class="btn btn-primary" href="{{url_for('student.resign')}}">确认</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="editModalLabel">编辑数据</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true"></span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            {% for item in data1 %}
+                            <form method="post" id="myform" action="/student/modify">
+                                <label>姓名</label> <input name="name" value={{item[0]}}>
+                                <label>性别</label>
+                                <select name="sex">
+                                    <option value="{{item[1]}}" selected>{{item[1]}}</option>
+                                    <option value="女">女</option>
+                                    <option value="男">男</option>
+                                </select>
+                                <label>专业</label> <input name="subject" value={{item[2]}}>
+                                <label>联系方式</label> <input name="number" value={{item[3]}}>
+                                <label>邮箱</label> <input name="email" value={{item[4]}}>
+                            </form>
+                            {% endfor %}
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+                            <button type="button" class="btn btn-primary" onclick="document.getElementById('myform').submit()">保存更改</button>
                         </div>
                     </div>
                 </div>
@@ -175,5 +222,19 @@
 <script src="static/js/bootstrap.min.js"></script><!-- Slimscroll JS -->
 <script src="static/js/jquery.slimscroll.min.js"></script><!-- Custom JS -->
 <script src="static/js/script.js"></script>
+<script>
+    function showError(errorMessage) {
+        alert(errorMessage);
+    }
+
+    function submitForm() {
+        var fileInput = document.getElementById('file');
+        if (fileInput.files.length === 0) {
+            showError('文件为空');
+        } else {
+            document.getElementById('myform').submit();
+        }
+    }
+</script>
 </body>
 </html>
