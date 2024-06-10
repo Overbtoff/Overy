@@ -7,7 +7,7 @@ def index():
     username= session['username']
     id=session['id']
     role = session['role']
-    sql="SELECT STUDENT_NAME,STUDENT_SEX,STUDENT_SUBJECT,STUDENT_NUMBER,STUDENT_EMAIL FROM STUDENT WHERE STUDENT_ID=:username"
+    sql="SELECT STUDENT_ID,STUDENT_NAME,STUDENT_SEX,STUDENT_DEPARTMENT_ID,STUDENT_SUBJECT,STUDENT_CLASS,STUDENT_NUMBER,STUDENT_EMAIL FROM STUDENT WHERE STUDENT_ID=:username"
     cursor.execute(sql,username=id)
     data1 = cursor.fetchall()
     sql="""SELECT TH.Theme_id,G.Graduation_topic,TEA.Teacher_name,G.Graduation_introduction,TH.Theme_Deadline,TH.Theme_State,S.Score_
