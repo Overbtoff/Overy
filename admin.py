@@ -69,6 +69,10 @@ def tealist():
         cursor.execute(sql)
         data = cursor.fetchall()
         return render_template('ad_teachers.html',username=username,role=role,data=data)
+    if request.method == 'POST':
+        row_id = request.form.get('rowId')
+        print(row_id)
+        return redirect(url_for('admin.tealist'))
 
 @admin.route('/titlist',methods=['GET','POST'])
 def titlist():
@@ -77,24 +81,21 @@ def titlist():
     if request.method == 'GET':
         check1=request.args.get('select1')
         if check1=="1":
-            sql="""SELECT Theme_id,Graduation_topic,Teacher_name,Graduation_introduction,Theme_Deadline
-                FROM GRADUATION,THEME,TEACHER
-                WHERE Theme_id = Graduation_id
-                AND Theme_teacher = Teacher_id
+            sql="""SELECT DISTINCT GRADUATION_id,Graduation_topic,Teacher_name,Graduation_introduction,Graduation_appdate,Graduation_subdate
+                FROM GRADUATION,TEACHER
+                WHERE Graduation_Teacher_id = Teacher_id
                 AND Teacher_name ='teacher1'
                 """
         elif check1=="2":
-            sql="""SELECT Theme_id,Graduation_topic,Teacher_name,Graduation_introduction,Theme_Deadline
-                FROM GRADUATION,THEME,TEACHER
-                WHERE Theme_id = Graduation_id
-                AND Theme_teacher = Teacher_id
+            sql="""SELECT DISTINCT GRADUATION_id,Graduation_topic,Teacher_name,Graduation_introduction,Graduation_appdate,Graduation_subdate
+                FROM GRADUATION,TEACHER
+                WHERE Graduation_Teacher_id = Teacher_id
                 AND Teacher_name ='teacher2'
                 """
         else:
-            sql="""SELECT Theme_id,Graduation_topic,Teacher_name,Graduation_introduction,Theme_Deadline
-                FROM GRADUATION,THEME,TEACHER
-                WHERE Theme_id = Graduation_id
-                AND Theme_teacher = Teacher_id"""
+            sql="""SELECT DISTINCT GRADUATION_id,Graduation_topic,Teacher_name,Graduation_introduction,Graduation_appdate,Graduation_subdate
+                FROM GRADUATION,TEACHER
+                WHERE Graduation_Teacher_id = Teacher_id"""
         cursor.execute(sql)
         data = cursor.fetchall()
         return render_template('ad_subjects.html',username=username,role=role,data=data)
@@ -164,9 +165,11 @@ def addtit():
     if request.method == 'POST':
         id=request.form.get('id')
         name=request.form.get('name')
-        info=request.form.get('info')
-        deadline=request.form.get('date')
-        deadline=datetime.strptime(deadline, '%Y-%m-%d')
+        dirct=request.form.get('dirct')
+        appdate=request.form.get('appdate')
+        subdate=request.form.get('subdate')
+        appdate=datetime.strptime(appdate,'%Y-%m-%d')
+        subdate=datetime.strptime(subdate,'%Y-%m-%d')
         teacher=request.form.get('teacher')
         sql="""SELECT TEACHER_ID FROM TEACHER WHERE TEACHER_NAME=:teacher"""
         cursor.execute(sql,teacher=teacher)
@@ -174,8 +177,8 @@ def addtit():
         teacher=teacher[0][0]
         print(teacher)
         sql="""INSERT INTO GRADUATION(Graduation_id,Graduation_topic,GRADUATION_KIND,Graduation_introduction,Graduation_teacher_id,GRADUATION_SUBDATE,Graduation_state,GRADUATION_APPDATE)
-        VALUES(:id,:name,:info,'生科',:teacher,sysdate,'未审核',:deadline)"""
-        cursor.execute(sql,id=id,name=name,info=info,teacher=teacher,deadline=deadline)
+        VALUES(:id,:name,:dirct,'生科',:teacher,:subdate,'未审核',:appdate)"""
+        cursor.execute(sql,id=id,name=name,dirct=dirct,teacher=teacher,subdate=subdate,appdate=appdate)
         conn.commit()
         return redirect(url_for('admin.titlist'))
 

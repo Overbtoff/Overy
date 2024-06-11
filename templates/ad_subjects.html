@@ -76,8 +76,9 @@
                                         <th>编号</th>
                                         <th>题目名称</th>
                                         <th>指导老师</th>
-                                        <th>具体信息</th>
-                                        <th>截止日期</th>
+                                        <th>方向</th>
+                                        <th>申请日期</th>
+                                        <th>审核日期</th>
                                         <th class="text-right">操作</th>
                                     </tr>
                                     </thead>
@@ -89,6 +90,7 @@
                                         <td>{{item[2]}}</td>
                                         <td>{{item[3]}}</td>
                                         <td>{{item[4]}}</td>
+                                        <td>{{item[5]}}</td>
                                         <td class="text-right">
                                             <div class="actions"><a href="#" class="btn btn-sm bg-success-light mr-2" data-toggle="modal" data-target="#editModal"><i
                                                     class="fas fa-pen"></i></a><a href="/admin/titlist?titid={{item[0]}}&st=0"
@@ -116,13 +118,12 @@
                             </div>
                             <div class="modal-body">
                                 <form method="post" id="myform">
-                                    <input type="hidden" id="rowId" name="rowId">
-                                    <label>编号</label> <input id="number" value="123">
-                                    <label>名称</label> <input id="name" value="123">
-                                    <label>指导老师</label> <input id="teacher" value="123">
-                                    <label>学生</label> <input id="student" value="123">
-                                    <label>研究方向</label> <input id="research" value="123">
-                                    <label>具体信息</label> <input id="info" value="123">
+                                    <label class="col-md-6">编号</label> <input id="id" name="id" class="col-md-4">
+                                    <label class="col-md-6">项目名称</label> <input id="name" name="name" class="col-md-4">
+                                    <label class="col-md-6">指导老师</label> <input id="teacher" class="col-md-4"  name="teacher" >
+                                    <label class="col-md-6">方向</label> <input id="dirct" class="col-md-4" name="dirct" >
+                                    <label class="col-md-6">申请日期</label> <input id="appdate" class="col-md-4" name="appdate" >
+                                    <label class="col-md-6">审核日期</label> <input id="subdate" class="col-md-4" name="subdate" >
                                 </form>
                             </div>
                             <div class="modal-footer">
@@ -147,8 +148,9 @@
                                     <label class="col-md-6">编号</label> <input name="id" class="col-md-4">
                                     <label class="col-md-6">项目名称</label> <input name="name" class="col-md-4">
                                     <label class="col-md-6">指导老师</label> <input class="col-md-4"  name="teacher" >
-                                    <label class="col-md-6">具体信息</label> <input class="col-md-4" name="info" >
-                                    <label class="col-md-6">截止日期</label> <input class="col-md-4" name="date" >
+                                    <label class="col-md-6">方向</label> <input class="col-md-4" name="dirct" >
+                                    <label class="col-md-6">申请日期</label> <input class="col-md-4" name="appdate" >
+                                    <label class="col-md-6">审核日期</label> <input class="col-md-4" name="subdate" >
                                 </form>
                             </div>
                             <div class="modal-footer">
@@ -181,13 +183,15 @@
                 var data3 = row.cells[2].innerText;
                 var data4 = row.cells[3].innerText;
                 var data5 = row.cells[4].innerText;
+                var data6 = row.cells[5].innerText;
 
                 // 将数据填充到模态框的表单中
-                document.getElementById('number').value = data1;
+                document.getElementById('id').value = data1;
                 document.getElementById('name').value = data2;
                 document.getElementById('teacher').value = data3;
-                document.getElementById('student').value = data4;
-                document.getElementById('research').value = data5;
+                document.getElementById('dirct').value = data4;
+                document.getElementById('appdate').value = data5;
+                document.getElementById('subdate').value = data6;
 
                 // 将行的唯一标识符设置为隐藏输入字段的值
                 // 这里假设你的行的唯一标识符是第一个单元格的内容

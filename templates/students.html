@@ -120,7 +120,8 @@
                         </div>
                         <div class="modal-body">
                             <form method="post" id="tuiform" action="/teacher/stulist">
-                                <input type="hidden" id="row_id" name="rowid">
+                                <input type="hidden" id="row_id" name="row_id">
+                                <label>得分</label><input name="score">
                             </form>
                         </div>
                         <div class="modal-footer">
@@ -146,10 +147,9 @@
         cancelBtns[i].addEventListener('click', function() {
             // 获取这一行的数据
             var row = this.parentNode.parentNode.parentNode;
-            var projectId = row.cells[0].innerText; // 假设项目编号在第一个单元格
-            console.log(projectId)
-            // 将项目编号设置为隐藏输入字段的值
-            document.getElementById('row_id').value = projectId;
+            var data1 = row.cells[0].innerText;
+
+            document.getElementById('row_id').value = data1;
 
             // 提交表单
 
