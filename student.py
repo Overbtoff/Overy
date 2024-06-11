@@ -7,7 +7,9 @@ def index():
     username= session['username']
     id=session['id']
     role = session['role']
-    sql="SELECT STUDENT_ID,STUDENT_NAME,STUDENT_SEX,STUDENT_DEPARTMENT_ID,STUDENT_SUBJECT,STUDENT_CLASS,STUDENT_NUMBER,STUDENT_EMAIL FROM STUDENT WHERE STUDENT_ID=:username"
+    sql=""" SELECT STUDENT_ID,STUDENT_NAME,STUDENT_SEX,DEPARTMENT_NAME,STUDENT_SUBJECT,STUDENT_CLASS,STUDENT_NUMBER,STUDENT_EMAIL
+         FROM STUDENT,DEPARTMENT WHERE STUDENT_ID=:username
+         AND DEPARTMENT_ID = STUDENT_DEPARTMENT_ID """
     cursor.execute(sql,username=id)
     data1 = cursor.fetchall()
     sql="""SELECT DISTINCT TH.Theme_id,G.Graduation_topic,TEA.Teacher_name,G.Graduation_introduction,TH.Theme_Deadline,TH.Theme_State,S.Score_
@@ -146,11 +148,22 @@ def modify():
     if request.method == 'POST':
         name=request.form.get('name')
         sex=request.form.get('sex')
+        department=request.form.get('department')
         subject=request.form.get('subject')
+        clas=request.form.get('class')
         number=request.form.get('number')
         email=request.form.get('email')
+        password=request.form.get('password')
         print(name,sex,subject,number,email)
-        #modify db
+        sql="""select DEPARTMENT_ID from department where department_name=:name"""
+        cursor.execute(sql,name=department)
+        department=cursor.fetchall()
+        department=department[0][0]
+        sql="""UPDATE STUDENT SET STUDENT_NAME=:name,STUDENT_sex=:sex,STUDENT_DEPARTMENT_ID=:department,STUDENT_SUBJECT=:subject,STUDENT_CLASS=:clas,STUDENT_NUMBER=:phone,STUDENT_EMAIL=:email WHERE STUDENT_ID=:id"""
+        cursor.execute(sql,name=name,sex=sex,department=department,subject=subject,clas=clas,phone=number,email=email,id=session['id'])
+        sql="""UPDATE USER_STUDENT SET USER_STUDENT_PASSWORDHASH=:password WHERE USER_STUDENT_ID=:id"""
+        cursor.execute(sql,password=password,id=session['id'])
+        conn.commit()
         return redirect(url_for('student.index'))
 
 

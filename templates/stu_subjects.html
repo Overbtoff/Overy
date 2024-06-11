@@ -84,7 +84,7 @@
                                     {% for item in data %}
                                     <tr>
                                         <td>{{item[0]}}</td>
-                                        <td><h2><a>{{item[1]}}</a></h2></td>
+                                        <td><h2><a href="{{url_for('teacher.titdown',tit=item[0])}}">{{item[1]}}</a></h2></td>
                                         <td>{{item[2]}}</td>
                                         <td>{{item[3]}}</td>
                                         <td>{{item[4]}}</td>

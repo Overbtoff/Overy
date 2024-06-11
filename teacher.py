@@ -1,6 +1,8 @@
 from flask import Blueprint, render_template, session, request, redirect, url_for, send_file
 from dbconn import conn, cursor
 import io
+from datetime import datetime
+from refreshid import newid
 
 teacher = Blueprint('teacher', __name__, static_folder='static')
 
@@ -66,14 +68,13 @@ def titlist():
     role = session['role']
     id = session['id']
     if request.method == 'GET':
-        sql = """SELECT DISTINCT GRADUATION_id,Graduation_topic 题目名称,Teacher_name 负责老师,Graduation_introduction 相关介绍,Graduation_appdate 申请时间,Graduation_subdate 审核时间,Graduation_state 审核状态
+        sql = """SELECT DISTINCT GRADUATION_id,Graduation_topic 题目名称,Graduation_introduction 相关介绍,GRADUATION_DEADLINE,Graduation_subdate ,Graduation_appdate ,Graduation_state 
                 FROM GRADUATION ,TEACHER
                 WHERE teacher_id = Graduation_Teacher_id
                 AND teacher_id = :username
             """
         cursor.execute(sql,username=id)
         data = cursor.fetchall()
-        print(data)
         return render_template('tea_subjects.html', username=username, role=role, data=data)
 
 
@@ -106,7 +107,6 @@ def stuapp():
         username = session['username']
         role = session['role']
         id = session['id']
-        print(id)
         sql = """SELECT DISTINCT Theme_id 编号,Graduation_topic 题目名称,Student_name 申请学生姓名,Student_number 申请学生电话,Student_email, Theme_State 申请状态
                 FROM GRADUATION,THEME,TEACHER,STUDENT
                 WHERE Theme_id = Graduation_id
@@ -129,13 +129,13 @@ def titapp():
     if value:
         print(value,st)
         if st == '1':
-            sql="""UPDATE GRADUATION set Graduation_state='已审核' where GRADUATION_ID = :value"""
+            sql="""UPDATE GRADUATION set Graduation_state='通过' where GRADUATION_ID = :value"""
             cursor.execute(sql,value=value)
             sql="""UPDATE GRADUATION set Graduation_subdate=sysdate where GRADUATION_ID = :value"""
             cursor.execute(sql,value=value)
             conn.commit()
         else:
-            sql="""UPDATE GRADUATION set Graduation_state='审核失败' where GRADUATION_ID = :value """
+            sql="""UPDATE GRADUATION set Graduation_state='拒绝' where GRADUATION_ID = :value """
             cursor.execute(sql,value=value)
             conn.commit()
         return redirect(url_for('teacher.titapp'))
@@ -145,10 +145,14 @@ def titapp():
             name = request.form['name']
             direct = request.form['direct']
             information = request.form['information']
-            print(name, direct, information)
-            sql="""INSERT INTO GRADUATION(Graduation_id,Graduation_topic,Graduation_Teacher_id,Graduation_kind,Graduation_introduction,Graduation_subdate,Graduation_state,Graduation_appdate) 
-VALUES(SEQTEST.NEXTVAL,:name,:id,:direct,:information,SYSDATE,'未审核','')"""
-            cursor.execute(sql,name=name,id=id,information=information,direct=direct)
+            file=request.files['file']
+            deadline = request.form['deadline']
+            deadline=datetime.strptime(deadline,'%Y-%m-%d')
+            blob_data = file.read()
+            sql="""INSERT INTO GRADUATION(Graduation_id,Graduation_topic,Graduation_Teacher_id,Graduation_kind,Graduation_introduction,Graduation_subdate,Graduation_state,Graduation_appdate,GRADUATION_DEADLINE,GRADUATION_WORD) 
+VALUES(:newid,:name,:id,:direct,:information,SYSDATE,'未审核','',:deadline,:blob)"""
+            cursor.execute(sql,newid=newid(),name=name,id=id,information=information,direct=direct,blob=blob_data,deadline=deadline)
+            conn.commit()
             return redirect(url_for('teacher.index'))
         else:
             sql="""SELECT Graduation_id 题目编号,Graduation_topic 题目名称,Teacher_name,Graduation_introduction 相关介绍,Graduation_State 申请状态
@@ -164,8 +168,16 @@ VALUES(SEQTEST.NEXTVAL,:name,:id,:direct,:information,SYSDATE,'未审核','')"""
 def edittit():
     if request.method == 'POST':
         value = request.form.get('rowId')
+        print(value)
         if value:
-            print(value)
+            name=request.form.get('name')
+            info=request.form.get('info')
+            deadline=request.form.get('deadline')
+            deadline=deadline[0:10]
+            deadline=datetime.strptime(deadline,'%Y-%m-%d')
+            sql="""UPDATE GRADUATION set Graduation_topic=:name,Graduation_introduction=:info,GRADUATION_DEADLINE=:deadline where GRADUATION_ID=:value"""
+            cursor.execute(sql,name=name,info=info,deadline=deadline,value=value)
+            conn.commit()
     return redirect(url_for('teacher.titlist'))
 
 
@@ -179,3 +191,36 @@ def down(stu):
     file_io = io.BytesIO(blob_data)
     # 使用send_file函数发送文件
     return send_file(file_io, as_attachment=True, mimetype='application/octet-stream', download_name='file.docx')
+
+@teacher.route('/titdown/<tit>', methods=['GET', 'POST'])
+def titdown(tit):
+    sql = "SELECT GRADUATION_WORD FROM Graduation WHERE GRADUATION_ID = :tit"
+    cursor.execute(sql, tit=tit)
+    row = cursor.fetchone()
+    blob_data = row[0].read()
+    # 创建一个BytesIO对象
+    file_io = io.BytesIO(blob_data)
+    # 使用send_file函数发送文件
+    return send_file(file_io, as_attachment=True, mimetype='application/octet-stream', download_name='file.docx')
+
+@teacher.route('/modify',methods=['GET','POST'])
+def modify():
+    if request.method == 'POST':
+        name=request.form.get('name')
+        sex=request.form.get('sex')
+        department=request.form.get('department')
+        research=request.form.get('research')
+        tit=request.form.get('tit')
+        number=request.form.get('number')
+        email=request.form.get('email')
+        password=request.form.get('password')
+        sql="""select DEPARTMENT_ID from department where department_name=:name"""
+        cursor.execute(sql,name=department)
+        department=cursor.fetchall()
+        department=department[0][0]
+        sql="""UPDATE TEACHER SET TEACHER_NAME=:name,TEACHER_sex=:sex,TEACHER_DEPARTMENT_ID=:department,TEACHER_RESEARCH=:research,TEACHER_TITLE=:tit,TEACHER_NUMBER=:phone,TEACHER_EMAIL=:email WHERE TEACHER_ID=:id"""
+        cursor.execute(sql,name=name,sex=sex,department=department,research=research,tit=tit,phone=number,email=email,id=session['id'])
+        sql="""UPDATE USER_TEACHER SET USER_TEACHER_PASSWORDHASH=:password WHERE USER_TEACHER_ID=:id"""
+        cursor.execute(sql,password=password,id=session['id'])
+        conn.commit()
+        return redirect(url_for('teacher.index'))
