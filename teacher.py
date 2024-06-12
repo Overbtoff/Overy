@@ -61,9 +61,18 @@ def stulist():
 @teacher.route('/titlist', methods=['GET', 'POST'])
 def titlist():
     if request.method == 'POST':  # tui
-        value = request.form.get('row_id')
+        value = request.form.get('rowid')
         if value:
-            print(value)
+            sql="""DELETE FROM SCORE WHERE SCORE_GRADUATION_ID=:value"""
+            cursor.execute(sql,value=value)
+            sql= """DELETE FROM Theme WHERE THEME_ID=:value"""
+            cursor.execute(sql, value=value)
+            sql = """DELETE FROM GRADUATION WHERE GRADUATION_ID=:value"""
+            cursor.execute(sql, value=value)
+            sql="""UPDATE TEACHER set Teacher_gradnumber=Teacher_gradnumber-1 where Teacher_id=:id"""
+            cursor.execute(sql,id=session['id'])
+            conn.commit()
+        return redirect(url_for('teacher.titlist'))
     username = session['username']
     role = session['role']
     id = session['id']

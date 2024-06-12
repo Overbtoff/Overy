@@ -110,5 +110,10 @@
 <script src="static/js/jquery.slimscroll.min.js"></script><!-- Datatables JS -->
 <script src="static/js/datatables.min.js"></script><!-- Custom JS -->
 <script src="static/js/script.js"></script>
+    <script>
+        {% if message %}
+        alert("{{message}}");
+        {% endif %}
+    </script>
 </body>
 </html>

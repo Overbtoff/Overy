@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template,session,redirect,url_for,request
+from flask import Blueprint, render_template,session,redirect,url_for,request,flash,get_flashed_messages
 from dbconn import conn,cursor
 student = Blueprint('student', __name__,static_folder='static')
 
@@ -16,7 +16,8 @@ def index():
             FROM GRADUATION G,THEME TH,TEACHER TEA,SCORE S
             WHERE Theme_id = Graduation_id
             AND Theme_teacher = Teacher_id 
-            AND Graduation_id = Score_graduation_id(+)
+            AND SCORE_STUDENT_ID=THEME_STUDENT
+            AND Graduation_id = Score_graduation_id
             AND Theme_student=:id
         """
     cursor.execute(sql,id=id)
@@ -28,8 +29,9 @@ def titlist():
     username= session['username']
     role = session['role']
     value = request.args.get('teaid', None)
+    messages = get_flashed_messages()
+    messages= messages[0] if messages else None
     if value:
-        print(value)
         #sql="SELECT THEME_ID,TEACHER_NAME,TEACHER_SEX,TEACHER_SUBJECT,TEACHER_NUMBER,TEACHER_EMAIL FROM TEACHER WHERE TEACHER_ID=:username"
         sql="""SELECT  GRADUATION_id 编号,Graduation_topic 题目名称,Teacher_name 负责老师,Graduation_introduction 相关介绍,Graduation_deadline 截止日期
                 FROM GRADUATION,TEACHER 
@@ -43,13 +45,12 @@ def titlist():
     else:
         if request.method == 'GET':
             check1=request.args.get('select1')
-            print(check1)
             if check1=="1":
                 sql="""SELECT  GRADUATION_id 编号,Graduation_topic 题目名称,Teacher_name 负责老师,Graduation_introduction 相关介绍,Graduation_deadline 截止日期
                 FROM GRADUATION,TEACHER 
                 WHERE Graduation_Teacher_id = Teacher_id 
                 AND Graduation_state='通过'
-                AND Theme_teacher=:username
+                AND Teacher_id=:username
         """
                 cursor.execute(sql,username=1000000001)
                 data = cursor.fetchall()
@@ -72,7 +73,8 @@ def titlist():
         """
                 cursor.execute(sql)
                 data = cursor.fetchall()
-                return render_template('stu_subjects.html',username=username,role=role,data=data)
+                print(messages)
+                return render_template('stu_subjects.html',username=username,role=role,data=data, message=messages)
 
 @student.route('/tealist')
 def tealist():
@@ -115,10 +117,15 @@ def app():
     stuid=session['id']
     id=request.args.get('titid')
     id=id.ljust(10, ' ')
+    sql="""SELECT THEME_ID FROM THEME WHERE THEME_STUDENT=:stuid"""
+    cursor.execute(sql,stuid=stuid)
+    data = cursor.fetchall()
+    if data:
+        flash('一个学生只能选一个题目')
+        return redirect(url_for('student.titlist'))
     sql="""SELECT GRADUATION_TEACHER_ID FROM GRADUATION WHERE GRADUATION_ID=:id"""
     cursor.execute(sql,id=id)
     teaid = cursor.fetchall()
-
     teaid=teaid[0][0]
     sql="""INSERT INTO THEME(Theme_id,Theme_student,Theme_teacher,Theme_State) 
     VALUES (:id,:stuid,:teaid,'未审核')"""

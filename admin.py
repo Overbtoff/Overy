@@ -36,6 +36,26 @@ def index():
         cursor.execute(sql)
         data = cursor.fetchall()
         return render_template('ad_students.html',username=username,role=role,data=data)
+    if request.method == 'POST':
+        row_id = request.form.get('rowId')
+        name=request.form.get('name')
+        sex=request.form.get('sex')
+        department=request.form.get('department')
+        subject=request.form.get('subject')
+        clas=request.form.get('class')
+        number=request.form.get('number')
+        email=request.form.get('email')
+        password=request.form.get('password')
+        sql="""select DEPARTMENT_ID from department where department_name=:name"""
+        cursor.execute(sql,name=department)
+        department=cursor.fetchall()
+        department=department[0][0]
+        sql="""UPDATE STUDENT SET STUDENT_NAME=:name,STUDENT_sex=:sex,STUDENT_DEPARTMENT_ID=:department,STUDENT_SUBJECT=:subject,STUDENT_CLASS=:clas,STUDENT_NUMBER=:phone,STUDENT_EMAIL=:email WHERE STUDENT_ID=:id"""
+        cursor.execute(sql,name=name,sex=sex,department=department,subject=subject,clas=clas,phone=number,email=email,id=row_id)
+        sql="""UPDATE USER_STUDENT SET USER_STUDENT_PASSWORDHASH=:password WHERE USER_STUDENT_ID=:id"""
+        cursor.execute(sql,password=password,id=row_id)
+        conn.commit()
+        return redirect(url_for('admin.index'))
 
 
 @admin.route('/tealist',methods=['GET','POST'])
@@ -71,7 +91,23 @@ def tealist():
         return render_template('ad_teachers.html',username=username,role=role,data=data)
     if request.method == 'POST':
         row_id = request.form.get('rowId')
-        print(row_id)
+        name=request.form.get('name')
+        sex=request.form.get('sex')
+        department=request.form.get('department')
+        tit=request.form.get('tit')
+        phone=request.form.get('phone')
+        email=request.form.get('email')
+        number=request.form.get('number')
+        password=request.form.get('password')
+        sql="""select DEPARTMENT_ID from department where department_name=:name"""
+        cursor.execute(sql,name=department)
+        department=cursor.fetchall()
+        department=department[0][0]
+        sql="""UPDATE TEACHER SET TEACHER_NAME=:name,TEACHER_sex=:sex,TEACHER_DEPARTMENT_ID=:department,TEACHER_TITLE=:tit,TEACHER_NUMBER=:phone,TEACHER_EMAIL=:email,TEACHER_GRADNUMBER=:num WHERE TEACHER_ID=:id"""
+        cursor.execute(sql,name=name,sex=sex,department=department,tit=tit,phone=phone,email=email,num=number,id=row_id)
+        sql="""UPDATE USER_TEACHER SET USER_TEACHER_PASSWORDHASH=:password WHERE USER_TEACHER_ID=:id"""
+        cursor.execute(sql,password=password,id=row_id)
+        conn.commit()
         return redirect(url_for('admin.tealist'))
 
 @admin.route('/titlist',methods=['GET','POST'])
@@ -100,8 +136,17 @@ def titlist():
         data = cursor.fetchall()
         return render_template('ad_subjects.html',username=username,role=role,data=data)
     if request.method == 'POST':
-        row_id = request.form.get('rowId')
-        print(row_id)
+        row_id = request.form.get('id')
+        name=request.form.get('name')
+        dirct=request.form.get('dirct')
+        tea=request.form.get('teacher')
+        sql="""SELECT TEACHER_ID FROM TEACHER WHERE TEACHER_NAME=:name"""
+        cursor.execute(sql,name=tea)
+        tea=cursor.fetchall()
+        tea=tea[0][0]
+        sql="""UPDATE GRADUATION SET Graduation_topic=:name,Graduation_introduction=:dirct,Graduation_teacher_id=:tea WHERE Graduation_id=:row_id"""
+        cursor.execute(sql,name=name,dirct=dirct,tea=tea,row_id=row_id)
+        conn.commit()
         return redirect(url_for('admin.titlist'))
     return render_template('ad_subjects.html', username=username)
 
@@ -177,7 +222,7 @@ def addtit():
         teacher=teacher[0][0]
         print(teacher)
         sql="""INSERT INTO GRADUATION(Graduation_id,Graduation_topic,GRADUATION_KIND,Graduation_introduction,Graduation_teacher_id,GRADUATION_SUBDATE,Graduation_state,GRADUATION_APPDATE)
-        VALUES(:id,:name,:dirct,'生科',:teacher,:subdate,'未审核',:appdate)"""
+        VALUES(:id,:name,'生科',:dirct,:teacher,:subdate,'未审核',:appdate)"""
         cursor.execute(sql,id=id,name=name,dirct=dirct,teacher=teacher,subdate=subdate,appdate=appdate)
         conn.commit()
         return redirect(url_for('admin.titlist'))
