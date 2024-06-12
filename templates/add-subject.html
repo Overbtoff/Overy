@@ -60,7 +60,7 @@
                 <div class="col-sm-12">
                     <div class="card">
                         <div class="card-body">
-                            <form method="post">
+                            <form method="post" enctype="multipart/form-data">
                                 <div class="row">
                                     <div class="col-12"><h5 class="form-title"><span>选题申请</span></h5>
                                     </div>
@@ -79,7 +79,10 @@
                                     </div>
                                     <div class="col-12 col-sm-6">
                                         <div class="form-group"><label>截止日期</label><input type="text"
-                                                                                              class="form-control" name="date"></div>
+                                                                                              class="form-control" name="deadline"></div>
+                                    </div>
+                                    <div class="col-12 col-sm-6">
+                                        <div class="form-group"><label>信息文档</label><input type="file" name="file" accept=".doc,.docx,.txt,.pdf"  id="file"></div>
                                     </div>
                                     <div class="col-12">
                                         <button type="submit" class="btn btn-primary">提交</button>
@@ -113,7 +116,7 @@
                                     {% for item in data %}
                                     <tr>
                                         <td>{{item[0]}}</td>
-                                        <td><h2><a>{{item[1]}}</a></h2></td>
+                                        <td><h2><a href="{{url_for('teacher.titdown',tit=item[0])}}">{{item[1]}}</a></h2></td>
                                         <td>{{item[2]}}</td>
                                         <td>{{item[3]}}</td>
                                         <td>{{item[4]}}</td>

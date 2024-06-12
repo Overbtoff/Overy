@@ -76,7 +76,7 @@
                                         <th>编号</th>
                                         <th>题目名称</th>
                                         <th>指导老师</th>
-                                        <th>方向</th>
+                                        <th>详细信息</th>
                                         <th>申请日期</th>
                                         <th>审核日期</th>
                                         <th class="text-right">操作</th>
@@ -118,12 +118,10 @@
                             </div>
                             <div class="modal-body">
                                 <form method="post" id="myform">
-                                    <label class="col-md-6">编号</label> <input id="id" name="id" class="col-md-4">
+                                    <input type="hidden" name="id" id="rowId">
                                     <label class="col-md-6">项目名称</label> <input id="name" name="name" class="col-md-4">
                                     <label class="col-md-6">指导老师</label> <input id="teacher" class="col-md-4"  name="teacher" >
-                                    <label class="col-md-6">方向</label> <input id="dirct" class="col-md-4" name="dirct" >
-                                    <label class="col-md-6">申请日期</label> <input id="appdate" class="col-md-4" name="appdate" >
-                                    <label class="col-md-6">审核日期</label> <input id="subdate" class="col-md-4" name="subdate" >
+                                    <label class="col-md-6">详细信息</label> <input id="dirct" class="col-md-4" name="dirct" >
                                 </form>
                             </div>
                             <div class="modal-footer">
@@ -148,7 +146,7 @@
                                     <label class="col-md-6">编号</label> <input name="id" class="col-md-4">
                                     <label class="col-md-6">项目名称</label> <input name="name" class="col-md-4">
                                     <label class="col-md-6">指导老师</label> <input class="col-md-4"  name="teacher" >
-                                    <label class="col-md-6">方向</label> <input class="col-md-4" name="dirct" >
+                                    <label class="col-md-6">详细信息</label> <input class="col-md-4" name="dirct" >
                                     <label class="col-md-6">申请日期</label> <input class="col-md-4" name="appdate" >
                                     <label class="col-md-6">审核日期</label> <input class="col-md-4" name="subdate" >
                                 </form>
@@ -186,12 +184,9 @@
                 var data6 = row.cells[5].innerText;
 
                 // 将数据填充到模态框的表单中
-                document.getElementById('id').value = data1;
                 document.getElementById('name').value = data2;
                 document.getElementById('teacher').value = data3;
                 document.getElementById('dirct').value = data4;
-                document.getElementById('appdate').value = data5;
-                document.getElementById('subdate').value = data6;
 
                 // 将行的唯一标识符设置为隐藏输入字段的值
                 // 这里假设你的行的唯一标识符是第一个单元格的内容

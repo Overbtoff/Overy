@@ -178,16 +178,19 @@
                         <div class="modal-body">
                             {% for item in data1 %}
                             <form method="post" id="myform" action="/student/modify">
-                                <label>姓名</label> <input name="name" value={{item[0]}}>
+                                <label>姓名</label> <input name="name" value={{item[1]}}>
                                 <label>性别</label>
                                 <select name="sex">
-                                    <option value="{{item[2]}}" selected>{{item[2]}}</option>
+                                    <option value={{item[2]}}>{{item[2]}}</option>
                                     <option value="女">女</option>
                                     <option value="男">男</option>
                                 </select>
-                                <label>专业</label> <input name="subject" value={{item[3]}}>
-                                <label>联系方式</label> <input name="number" value={{item[4]}}>
-                                <label>邮箱</label> <input name="email" value={{item[5]}}>
+                                <label >院系</label> <input  name="department" value={{item[3]}}>
+                                <label >专业</label> <input  name="subject" value={{item[4]}}>
+                                <label >班级</label> <input  name="class" value={{item[5]}}>
+                                <label >联系方式</label> <input  name="number" value={{item[6]}}>
+                                <label >邮箱</label> <input  name="email" value={{item[7]}}>
+                                <label >密码</label> <input  name="password">
                             </form>
                             {% endfor %}
                         </div>

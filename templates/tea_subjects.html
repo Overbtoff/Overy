@@ -68,8 +68,8 @@
                                     <tr>
                                         <th>编号</th>
                                         <th>题目名称</th>
-                                        <th>指导老师</th>
                                         <th>具体信息</th>
+                                        <th>截止日期</th>
                                         <th>申请日期</th>
                                         <th>审核日期</th>
                                         <th>状态</th>
@@ -113,10 +113,9 @@
                             <div class="modal-body">
                                 <form method="post" id="myform" action="/teacher/edittit">
                                     <input type="hidden" id="rowId" name="rowId">
-                                    <label>名称</label> <input id="name" value="123">
-                                    <label>研究方向</label> <input id="research" value="123">
-                                    <label>具体信息</label> <input id="info" value="123">
-                                    <label>截止日期</label> <input id="date" value="123">
+                                    <label>名称</label> <input id="name" name="name">
+                                    <label>具体信息</label> <input id="info" name="info">
+                                    <label>截止日期</label> <input id="deadline" name="deadline">
                                 </form>
                             </div>
                             <div class="modal-footer">
@@ -164,10 +163,10 @@
         cancelBtns[i].addEventListener('click', function() {
             // 获取这一行的数据
             var row = this.parentNode.parentNode.parentNode;
-            var projectId = row.cells[0].innerText; // 假设项目编号在第一个单元格
-console.log(projectId)
+            var data = row.cells[0].innerText; // 假设项目编号在第一个单元格
+
             // 将项目编号设置为隐藏输入字段的值
-            document.getElementById('row_id').value = projectId;
+            document.getElementById('row_id').value = data;
 
             // 提交表单
 
@@ -190,9 +189,8 @@ console.log(projectId)
 
                 // 将数据填充到模态框的表单中
                 document.getElementById('name').value = data2;
-                document.getElementById('research').value = data3;
-                document.getElementById('info').value = data4;
-                document.getElementById('date').value = data5;
+                document.getElementById('info').value = data3;
+                document.getElementById('deadline').value = data4;
 
                 // 将行的唯一标识符设置为隐藏输入字段的值
                 // 这里假设你的行的唯一标识符是第一个单元格的内容

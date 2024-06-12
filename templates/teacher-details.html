@@ -66,10 +66,11 @@
                                     <div class="media-body">
                                         {% for item in data %}
                                         <ul>
+                                            <li><span class="title-span">工号:</span><span class="info-span">{{item[0]}}</span></li>
                                             <li><span class="title-span">姓名:</span><span class="info-span">{{item[1]}}</span>
                                             </li>
                                             <li><span class="title-span">性别:</span><span class="info-span">{{item[2]}}</span></li>
-                                            <li><span class="title-span">专业:</span><span class="info-span">{{item[3]}}</span>
+                                            <li><span class="title-span">学院:</span><span class="info-span">{{item[3]}}</span>
                                             </li>
                                             <li><span class="title-span">研究方向:</span><span class="info-span">{{item[4]}}</span>
                                             </li>
@@ -108,15 +109,23 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <form method="post" id="myform" >
-                                <input type="hidden" id="rowId" name="rowId">
-                                <label>编号</label> <input id="number" value="123">
-                                <label>名称</label> <input id="name" value="123">
-                                <label>指导老师</label> <input id="teacher" value="123">
-                                <label>学生</label> <input id="student" value="123">
-                                <label>研究方向</label> <input id="research" value="123">
-                                <label>具体信息</label> <input id="info" value="123">
+                            {% for item in data %}
+                            <form method="post" id="myform" action="/teacher/modify">
+                                <label>姓名</label> <input name="name" value={{item[1]}}>
+                                <label>性别</label>
+                                <select name="sex">
+                                    <option value={{item[2]}}>{{item[2]}}</option>
+                                    <option value="女">女</option>
+                                    <option value="男">男</option>
+                                </select>
+                                <label >学院</label> <input  name="department" value={{item[3]}}>
+                                <label >研究方向</label> <input  name="research" value={{item[4]}}>
+                                <label >职称</label> <input  name="tit" value={{item[5]}}>
+                                <label >联系方式</label> <input  name="number" value={{item[6]}}>
+                                <label >邮箱</label> <input  name="email" value={{item[7]}}>
+                                <label >密码</label> <input  name="password">
                             </form>
+                            {% endfor %}
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
