@@ -30,7 +30,7 @@
                         <div class="avatar avatar-sm"><img src="static/picture/avatar-01.jpg" alt="User Image"
                                                            class="avatar-img rounded-circle"></div>
                         <div class="user-text"><h6>{{username}}</h6>
-                            <p class="text-muted mb-0">管理员</p></div>
+                            <p class="text-muted mb-0">{{role}}</p></div>
                     </div>
                     <a class="dropdown-item" href="{{url_for('logout')}}">登出</a></div>
             </li><!-- /User Menu --></ul><!-- /Header Right Menu --></div><!-- /Header --><!-- Sidebar -->
@@ -39,7 +39,7 @@
             <div id="sidebar-menu" class="sidebar-menu">
                 <ul>
                     <li class="menu-title"><span>主菜单</span></li>
-                    <li><a href="{{ url_for('admin.stulist') }}"><i class="fas fa-th-large"></i><span>学生列表</span></a></li>
+                    <li><a href="{{ url_for('admin.index') }}"><i class="fas fa-th-large"></i><span>学生列表</span></a></li>
                     <li class="active"><a href="{{ url_for('admin.tealist') }}"><i class="fas fa-holly-berry"></i><span>老师列表</span></a></li>
                     <li><a href="{{ url_for('admin.titlist') }}"><i class="fas fa-comment-dollar"></i><span>选题列表</span></a></li>
                 </ul>
@@ -60,11 +60,10 @@
                     <div class="card card-table">
                         <div class="card-body">
                             <form class="form-inline">
-                                <select class="form-control mr-sm-2">
-                                    <option selected>Choose...</option>
-                                    <option value="1">Section 1</option>
-                                    <option value="2">Section 2</option>
-                                    <option value="3">Section 3</option>
+                                <select class="form-control mr-sm-2" name="select1">
+                                    <option value="0" selected>学院</option>
+                                    <option value="1">计算机学院</option>
+                                    <option value="2">汉语言与新闻传播学院</option>
                                 </select>
                                 <button class="btn btn-primary" type="submit">筛选</button>
                             </form>
@@ -75,223 +74,38 @@
                                     <tr>
                                         <th>工号</th>
                                         <th>姓名</th>
-                                        <th>部门</th>
                                         <th>性别</th>
-                                        <th>科目</th>
-                                        <th>Section</th>
-                                        <th>手机号</th>
-                                        <th>Address</th>
-                                        <th class="text-right">Action</th>
+                                        <th>职称</th>
+                                        <th>学院</th>
+                                        <th>电话</th>
+                                        <th>邮箱</th>
+                                        <th>已有题目数量</th>
+                                        <th>密码</th>
+                                        <th class="text-right">操作</th>
                                     </tr>
                                     </thead>
                                     <tbody>
+                                    {% for item in data %}
                                     <tr>
-                                        <td>PRE2209</td>
-                                        <td><h2 class="table-avatar"><a href="teacher-details.html"
-                                                                        class="avatar avatar-sm mr-2"><img
-                                                class="avatar-img rounded-circle" src="static/picture/avatar-02.jpg"
-                                                alt="User Image"></a><a href="teacher-details.html">Aaliyah</a></h2>
+                                        <td>{{item[0]}}</td>
+                                        <td><h2 class="table-avatar"><a href="#">{{item[1]}}</a></h2>
                                         </td>
-                                        <td>10</td>
-                                        <td>Female</td>
-                                        <td>Mathematics</td>
-                                        <td>A</td>
-                                        <td>097 3584 5870</td>
-                                        <td>911 Deer Ridge Drive,USA</td>
+                                        <td>{{item[2]}}</td>
+                                        <td>{{item[3]}}</td>
+                                        <td>{{item[4]}}</td>
+                                        <td>{{item[5]}}</td>
+                                        <td>{{item[6]}}</td>
+                                        <td>{{item[7]}}</td>
+                                        <td>{{item[8]}}</td>
                                         <td class="text-right">
-                                            <div class="actions"><a href="edit-teacher.html"
+                                            <div class="actions"><a href="#"
                                                                     class="btn btn-sm bg-success-light mr-2" data-toggle="modal" data-target="#editModal"><i
-                                                    class="fas fa-pen"></i></a><a href="/admin/titlist?titid={{ username }}&st=0"
+                                                    class="fas fa-pen"></i></a><a href="/admin/titlist?teaid={{item[0]}}&st=0"
                                                                                   class="btn btn-sm bg-danger-light"><i
                                                     class="fas fa-trash"></i></a></div>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td>PRE2213</td>
-                                        <td><h2 class="table-avatar"><a href="teacher-details.html"
-                                                                        class="avatar avatar-sm mr-2"><img
-                                                class="avatar-img rounded-circle" src="static/picture/avatar-03.jpg"
-                                                alt="User Image"></a><a href="teacher-details.html">Malynne</a></h2>
-                                        </td>
-                                        <td>8</td>
-                                        <td>Female</td>
-                                        <td>Physics</td>
-                                        <td>A</td>
-                                        <td>242 362 3100</td>
-                                        <td>Bacardi Rd P.O. Box N-4880,New Providence</td>
-                                        <td class="text-right">
-                                            <div class="actions"><a href="edit-teacher.html"
-                                                                    class="btn btn-sm bg-success-light mr-2"><i
-                                                    class="fas fa-pen"></i></a><a href="#"
-                                                                                  class="btn btn-sm bg-danger-light"><i
-                                                    class="fas fa-trash"></i></a></div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>PRE2143</td>
-                                        <td><h2 class="table-avatar"><a href="teacher-details.html"
-                                                                        class="avatar avatar-sm mr-2"><img
-                                                class="avatar-img rounded-circle" src="static/picture/avatar-04.jpg"
-                                                alt="User Image"></a><a href="teacher-details.html">Levell Scott</a>
-                                        </h2></td>
-                                        <td>10</td>
-                                        <td>Male</td>
-                                        <td>Science</td>
-                                        <td>B</td>
-                                        <td>026 7318 4366</td>
-                                        <td>P.O. Box:41,Gaborone</td>
-                                        <td class="text-right">
-                                            <div class="actions"><a href="edit-teacher.html"
-                                                                    class="btn btn-sm bg-success-light mr-2"><i
-                                                    class="fas fa-pen"></i></a><a href="#"
-                                                                                  class="btn btn-sm bg-danger-light"><i
-                                                    class="fas fa-trash"></i></a></div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>PRE2431</td>
-                                        <td><h2 class="table-avatar"><a href="teacher-details.html"
-                                                                        class="avatar avatar-sm mr-2"><img
-                                                class="avatar-img rounded-circle" src="static/picture/avatar-05.jpg"
-                                                alt="User Image"></a><a href="teacher-details.html">Minnie</a></h2></td>
-                                        <td>11</td>
-                                        <td>Male</td>
-                                        <td>History</td>
-                                        <td>C</td>
-                                        <td>952 512 4909</td>
-                                        <td>4771 Oral Lake Road,Golden Valley</td>
-                                        <td class="text-right">
-                                            <div class="actions"><a href="edit-teacher.html"
-                                                                    class="btn btn-sm bg-success-light mr-2"><i
-                                                    class="fas fa-pen"></i></a><a href="#"
-                                                                                  class="btn btn-sm bg-danger-light"><i
-                                                    class="fas fa-trash"></i></a></div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>PRE1534</td>
-                                        <td><h2 class="table-avatar"><a href="teacher-details.html"
-                                                                        class="avatar avatar-sm mr-2"><img
-                                                class="avatar-img rounded-circle" src="static/picture/avatar-06.jpg"
-                                                alt="User Image"></a><a href="teacher-details.html">Lois A</a></h2></td>
-                                        <td>10</td>
-                                        <td>Female</td>
-                                        <td>English</td>
-                                        <td>B</td>
-                                        <td>413 289 1314</td>
-                                        <td>2844 Leverton Cove Road,Palmer</td>
-                                        <td class="text-right">
-                                            <div class="actions"><a href="edit-teacher.html"
-                                                                    class="btn btn-sm bg-success-light mr-2"><i
-                                                    class="fas fa-pen"></i></a><a href="#"
-                                                                                  class="btn btn-sm bg-danger-light"><i
-                                                    class="fas fa-trash"></i></a></div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>PRE2153</td>
-                                        <td><h2 class="table-avatar"><a href="teacher-details.html"
-                                                                        class="avatar avatar-sm mr-2"><img
-                                                class="avatar-img rounded-circle" src="static/picture/avatar-07.jpg"
-                                                alt="User Image"></a><a href="teacher-details.html">Calvin</a></h2></td>
-                                        <td>9</td>
-                                        <td>Male</td>
-                                        <td>Mathematics</td>
-                                        <td>C</td>
-                                        <td>701 753 3810</td>
-                                        <td>1900 Hidden Meadow Drive,Crete</td>
-                                        <td class="text-right">
-                                            <div class="actions"><a href="edit-teacher.html"
-                                                                    class="btn btn-sm bg-success-light mr-2"><i
-                                                    class="fas fa-pen"></i></a><a href="#"
-                                                                                  class="btn btn-sm bg-danger-light"><i
-                                                    class="fas fa-trash"></i></a></div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>PRE1434</td>
-                                        <td><h2 class="table-avatar"><a href="teacher-details.html"
-                                                                        class="avatar avatar-sm mr-2"><img
-                                                class="avatar-img rounded-circle" src="static/picture/avatar-08.jpg"
-                                                alt="User Image"></a><a href="teacher-details.html">Vincent</a></h2>
-                                        </td>
-                                        <td>10</td>
-                                        <td>Male</td>
-                                        <td>Mathematics</td>
-                                        <td>C</td>
-                                        <td>402 221 7523</td>
-                                        <td>3979 Ashwood Drive,Omaha</td>
-                                        <td class="text-right">
-                                            <div class="actions"><a href="edit-teacher.html"
-                                                                    class="btn btn-sm bg-success-light mr-2"><i
-                                                    class="fas fa-pen"></i></a><a href="#"
-                                                                                  class="btn btn-sm bg-danger-light"><i
-                                                    class="fas fa-trash"></i></a></div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>PRE2345</td>
-                                        <td><h2 class="table-avatar"><a href="teacher-details.html"
-                                                                        class="avatar avatar-sm mr-2"><img
-                                                class="avatar-img rounded-circle" src="static/picture/avatar-09.jpg"
-                                                alt="User Image"></a><a href="teacher-details.html">Kozma Tatari</a>
-                                        </h2></td>
-                                        <td>9</td>
-                                        <td>Female</td>
-                                        <td>Science</td>
-                                        <td>A</td>
-                                        <td>04 2239 968</td>
-                                        <td>Rruga E Kavajes,Condor Center,Tirana</td>
-                                        <td class="text-right">
-                                            <div class="actions"><a href="edit-teacher.html"
-                                                                    class="btn btn-sm bg-success-light mr-2"><i
-                                                    class="fas fa-pen"></i></a><a href="#"
-                                                                                  class="btn btn-sm bg-danger-light"><i
-                                                    class="fas fa-trash"></i></a></div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>PRE2365</td>
-                                        <td><h2 class="table-avatar"><a href="teacher-details.html"
-                                                                        class="avatar avatar-sm mr-2"><img
-                                                class="avatar-img rounded-circle" src="static/picture/avatar-10.jpg"
-                                                alt="User Image"></a><a href="teacher-details.html">John Chambers</a>
-                                        </h2></td>
-                                        <td>11</td>
-                                        <td>Male</td>
-                                        <td>Botony</td>
-                                        <td>B</td>
-                                        <td>870 663 2334</td>
-                                        <td>4667 Sunset Drive,Pine Bluff</td>
-                                        <td class="text-right">
-                                            <div class="actions"><a href="edit-teacher.html"
-                                                                    class="btn btn-sm bg-success-light mr-2"><i
-                                                    class="fas fa-pen"></i></a><a href="#"
-                                                                                  class="btn btn-sm bg-danger-light"><i
-                                                    class="fas fa-trash"></i></a></div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>PRE1234</td>
-                                        <td><h2 class="table-avatar"><a href="teacher-details.html"
-                                                                        class="avatar avatar-sm mr-2"><img
-                                                class="avatar-img rounded-circle" src="static/picture/avatar-11.jpg"
-                                                alt="User Image"></a><a href="teacher-details.html">Nathan Humphries</a>
-                                        </h2></td>
-                                        <td>10</td>
-                                        <td>Male</td>
-                                        <td>Biology</td>
-                                        <td>A</td>
-                                        <td>077 3499 9959</td>
-                                        <td>86 Lamphey Road,Thelnetham</td>
-                                        <td class="text-right">
-                                            <div class="actions"><a href="edit-teacher.html"
-                                                                    class="btn btn-sm bg-success-light mr-2"><i
-                                                    class="fas fa-pen"></i></a><a href="#"
-                                                                                  class="btn btn-sm bg-danger-light"><i
-                                                    class="fas fa-trash"></i></a></div>
-                                        </td>
-                                    </tr>
+                                    {% endfor %}
                                     </tbody>
                                 </table>
                             </div>
@@ -312,12 +126,18 @@
                             <div class="modal-body">
                                 <form method="post" id="myform" >
                                     <input type="hidden" id="rowId" name="rowId">
-                                    <label>编号</label> <input id="number" value="123">
-                                    <label>名称</label> <input id="name" value="123">
-                                    <label>指导老师</label> <input id="teacher" value="123">
-                                    <label>学生</label> <input id="student" value="123">
-                                    <label>研究方向</label> <input id="research" value="123">
-                                    <label>具体信息</label> <input id="info" value="123">
+                                    <label class="col-md-6">工号</label> <input id="teaid" name="teaid" class="col-md-4">
+                                    <label class="col-md-6">姓名</label> <input id="name" name="name" class="col-md-4">
+                                    <label class="col-md-6">性别</label> <select id="sex" name="sex" class="col-md-4">
+                                    <option value="女">女</option>
+                                    <option value="男">男</option>
+                                </select>
+                                    <label class="col-md-6">职称</label> <input id="level" class="col-md-4"  name="level" >
+                                    <label class="col-md-6">学院</label> <input id="department" class="col-md-4" name="department" >
+                                    <label class="col-md-6">电话号码</label> <input class="col-md-4" id="phone" name="phone" maxlength="11" minlength="11">
+                                    <label class="col-md-6">邮箱</label> <input class="col-md-4" id="email" name="email" >
+                                    <label class="col-md-6">选题数量</label> <input id="number" class="col-md-4" name="number" >
+                                    <label class="col-md-6">密码</label> <input class="col-md-4" id="password" name="password" minlength="6" maxlength="20">
                                 </form>
                             </div>
                             <div class="modal-footer">
@@ -339,12 +159,18 @@
                             </div>
                             <div class="modal-body">
                                 <form method="post" id="crform" action="/admin/addtea">
-                                    <label>编号</label> <input id="number" value="123">
-                                    <label>名称</label> <input id="name" value="123">
-                                    <label>指导老师</label> <input id="teacher" value="123">
-                                    <label>学生</label> <input id="student" value="123">
-                                    <label>研究方向</label> <input id="research" value="123">
-                                    <label>具体信息</label> <input id="info" value="123">
+                                    <label class="col-md-6">工号</label> <input name="id" class="col-md-4">
+                                    <label class="col-md-6">姓名</label> <input name="name" class="col-md-4">
+                                    <label class="col-md-6">性别</label> <select name="sex" class="col-md-4">
+                                    <option value="女">女</option>
+                                    <option value="男">男</option>
+                                </select>
+                                    <label class="col-md-6">职称</label> <input class="col-md-4"  name="level" >
+                                    <label class="col-md-6">学院</label> <input class="col-md-4" name="department" >
+                                    <label class="col-md-6">电话号码</label> <input class="col-md-4" name="phone" maxlength="11" minlength="11">
+                                    <label class="col-md-6">邮箱</label> <input class="col-md-4" name="email" >
+                                    <label class="col-md-6">选题数量</label> <input class="col-md-4" name="number" >
+                                    <label class="col-md-6">密码</label> <input class="col-md-4" name="password" minlength="6" maxlength="20">
                                 </form>
                             </div>
                             <div class="modal-footer">
@@ -377,13 +203,21 @@
                 var data3 = row.cells[2].innerText;
                 var data4 = row.cells[3].innerText;
                 var data5 = row.cells[4].innerText;
+                var data6 = row.cells[5].innerText;
+                var data7 = row.cells[6].innerText;
+                var data8 = row.cells[7].innerText;
+                var data9 = row.cells[8].innerText;
 
                 // 将数据填充到模态框的表单中
-                document.getElementById('number').value = data1;
+                document.getElementById('teaid').value = data1;
                 document.getElementById('name').value = data2;
-                document.getElementById('teacher').value = data3;
-                document.getElementById('student').value = data4;
-                document.getElementById('research').value = data5;
+                document.getElementById('sex').value = data3;
+                document.getElementById('level').value = data4;
+                document.getElementById('department').value = data5;
+                document.getElementById('phone').value = data6;
+                document.getElementById('email').value = data7;
+                document.getElementById('number').value = data8;
+                document.getElementById('password').value = data9;
 
                 // 将行的唯一标识符设置为隐藏输入字段的值
                 // 这里假设你的行的唯一标识符是第一个单元格的内容

@@ -31,7 +31,7 @@
                         <div class="avatar avatar-sm"><img src="static/picture/avatar-01.jpg" alt="User Image"
                                                            class="avatar-img rounded-circle"></div>
                         <div class="user-text"><h6>{{ username }}</h6>
-                            <p class="text-muted mb-0">老师</p></div>
+                            <p class="text-muted mb-0">{{role}}</p></div>
                     </div>
                     <a class="dropdown-item" href="{{ url_for('logout') }}">登出</a></div>
             </li><!-- /User Menu --></ul><!-- /Header Right Menu --></div><!-- /Header --><!-- Sidebar -->
@@ -64,26 +64,27 @@
                             <div class="about-info"><h4>About Me</h4>
                                 <div class="media mt-3"><img src="static/picture/shuaiqideshasha.jpg" class="mr-3" alt="...">
                                     <div class="media-body">
+                                        {% for item in data %}
                                         <ul>
-                                            <li><span class="title-span">姓名:</span><span class="info-span">沙普爱思</span>
+                                            <li><span class="title-span">姓名:</span><span class="info-span">{{item[1]}}</span>
                                             </li>
-                                            <li><span class="title-span">专业:</span><span class="info-span">软件工程</span>
+                                            <li><span class="title-span">性别:</span><span class="info-span">{{item[2]}}</span></li>
+                                            <li><span class="title-span">专业:</span><span class="info-span">{{item[3]}}</span>
                                             </li>
-                                            <li><span class="title-span">联系方式:</span><span class="info-span">123 4567 8910 </span>
+                                            <li><span class="title-span">研究方向:</span><span class="info-span">{{item[4]}}</span>
                                             </li>
-                                            <li><span class="title-span">邮箱:</span><span class="info-span">shashawoaini@gmail.com</span>
+                                            <li><span class="title-span">职称:</span><span class="info-span">{{item[5]}}</span>
                                             </li>
-                                            <li><span class="title-span">性别:</span><span
-                                                    class="info-span">男</span></li>
-                                            <li><span class="title-span">出生日期:</span><span
-                                                    class="info-span">2000.01.01</span></li>
+                                            <li><span class="title-span">电话:</span><span class="info-span">{{item[6]}}</span>
+                                            </li>
+                                            <li><span class="title-span">邮箱:</span><span class="info-span">{{item[7]}}</span>
+                                            </li>
+                                            <li><span class="title-span">已有题目数量:</span><span class="info-span">{{item[8]}}</span>
+                                            </li>
                                         </ul>
+                                        {% endfor %}
                                     </div>
                                 </div>
-                                <div class="row mt-3">
-                                    <div class="col-md-12"><p>沙沙我为你欢呼~~~~~~~~~~~~~~~~~~~~~~~~~~~~~.</p></div>
-                                </div>
-
                             </div>
                         </div>
                     </div>

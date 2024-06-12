@@ -31,7 +31,7 @@
                         <div class="avatar avatar-sm"><img src="static/picture/avatar-01.jpg" alt="User Image"
                                                            class="avatar-img rounded-circle"></div>
                         <div class="user-text"><h6>{{username}}</h6>
-                            <p class="text-muted mb-0">老师</p></div>
+                            <p class="text-muted mb-0">{{role}}</p></div>
                     </div>
                     <a
                         class="dropdown-item" href="{{url_for('logout')}}">登出</a></div>
@@ -68,51 +68,31 @@
                                     <tr>
                                         <th>编号</th>
                                         <th>题目名称</th>
-                                        <th>申请学生姓名</th>
-                                        <th>申请时间</th>
-                                        <th class="text-right">审核状态</th>
+                                        <th>申请学生</th>
+                                        <th>学生电话</th>
+                                        <th>学生邮箱</th>
+                                        <th>审核状态</th>
+                                        <th class="text-right">操作</th>
                                     </tr>
                                     </thead>
                                     <tbody>
+                                    {% for item in data %}
                                     <tr>
-                                        <td>PRE2209</td>
-                                        <td><h2><a>Mathematics</a></h2></td>
-                                        <td>5</td>
-                                        <td>2021-01-12</td>
+                                        <td>{{item[0]}}</td>
+                                        <td><h2><a>{{item[1]}}</a></h2></td>
+                                        <td>{{item[2]}}</td>
+                                        <td>{{item[3]}}</td>
+                                        <td>{{item[4]}}</td>
+                                        <td>{{item[5]}}</td>
                                         <td class="text-right">
-                                            <div class="actions"><a href="edit-subject.html"
+                                            <div class="actions"><a href="/teacher/stuapp?stuid={{item[2]}}&st=1&titid={{item[0]}}"
                                                                     class="btn btn-sm bg-success-light mr-2"><i
-                                                    class="fas fa-pen"></i></a><a href="#"
+                                                    class="fas fa-pen"></i></a><a href="/teacher/stuapp?stuid={{item[2]}}&st=0&titid={{item[0]}}"
                                                                                   class="btn btn-sm bg-danger-light"><i
                                                     class="fas fa-trash"></i></a></div>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td>PRE2213</td>
-                                        <td><h2><a>History</a></h2></td>
-                                        <td>6</td>
-                                        <td>2021-01-12</td>
-                                        <td class="text-right">
-                                            <div class="actions"><a href="/teacher/stuapp?stuid={{ username }}&st=1"
-                                                                    class="btn btn-sm bg-success-light mr-2"><i
-                                                    class="fas fa-pen"></i></a><a href="/teacher/stuapp?stuid={{ username }}&st=0"
-                                                                                  class="btn btn-sm bg-danger-light"><i
-                                                    class="fas fa-trash"></i></a></div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>PRE2143</td>
-                                        <td><h2><a>Science</a></h2></td>
-                                        <td>3</td>
-                                        <td>2021-01-12</td>
-                                        <td class="text-right">
-                                            <div class="actions"><a href="edit-subject.html"
-                                                                    class="btn btn-sm bg-success-light mr-2"><i
-                                                    class="fas fa-pen"></i></a><a href="#"
-                                                                                  class="btn btn-sm bg-danger-light"><i
-                                                    class="fas fa-trash"></i></a></div>
-                                        </td>
-                                    </tr>
+                                    {% endfor %}
                                     </tbody>
                                 </table>
                             </div>

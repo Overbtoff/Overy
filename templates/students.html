@@ -31,7 +31,7 @@
                         <div class="avatar avatar-sm"><img src="static/picture/avatar-01.jpg" alt="User Image"
                                                            class="avatar-img rounded-circle"></div>
                         <div class="user-text"><h6>{{username}}</h6>
-                            <p class="text-muted mb-0">老师</p></div>
+                            <p class="text-muted mb-0">{{role}}</p></div>
                     </div>
                     <a class="dropdown-item" href="{{url_for('logout')}}">退出</a></div>
             </li><!-- /User Menu --></ul><!-- /Header Right Menu --></div><!-- /Header --><!-- Sidebar -->
@@ -58,10 +58,9 @@
                         <div class="card-body">
                             <form class="form-inline">
                                 <select class="form-control mr-sm-2">
-                                    <option selected>Choose...</option>
-                                    <option value="1">Section 1</option>
+                                    <option value="0" selected>学院</option>
+                                    <option value="1">计算机学院</option>
                                     <option value="2">Section 2</option>
-                                    <option value="3">Section 3</option>
                                 </select>
                                 <button class="btn btn-primary" type="submit">筛选</button>
                             </form>
@@ -71,75 +70,37 @@
                                     <tr>
                                         <th>学号</th>
                                         <th>姓名</th>
+                                        <th>性别</th>
                                         <th>专业</th>
                                         <th>班级</th>
-                                        <th>出生日期</th>
                                         <th>电话号码</th>
-                                        <th>班主任信息</th>
+                                        <th>学生邮箱</th>
                                         <th class="text-right">操作</th>
                                     </tr>
                                     </thead>
                                     <tbody>
+                                    {% for item in data %}
                                     <tr>
-                                        <td>PRE2209</td>
+                                        <td>{{item[0]}}</td>
                                         <td><h2 class="table-avatar"><a href="student-details.html"
                                                                         class="avatar avatar-sm mr-2"><img
                                                 class="avatar-img rounded-circle" src="static/picture/avatar-01.jpg"
-                                                alt="User Image"></a><a href="student-details.html">Aaliyah</a></h2>
+                                                alt="User Image"></a><a href="student-details.html">{{item[1]}}</a></h2>
                                         </td>
-                                        <td>10 A</td>
-                                        <td>2 Feb 2002</td>
-                                        <td>Jeffrey Wong</td>
-                                        <td>097 3584 5870</td>
-                                        <td>911 Deer Ridge Drive,USA</td>
+                                        <td>{{item[2]}}</td>
+                                        <td>{{item[3]}}</td>
+                                        <td>{{item[4]}}</td>
+                                        <td>{{item[5]}}</td>
+                                        <td>{{item[6]}}</td>
                                         <td class="text-right">
-                                            <div class="actions"><a href="{{url_for('teacher.down') }}"
+                                            <div class="actions"><a href="{{url_for('teacher.down',stu=item[0]) }}"
                                                                     class="btn btn-sm bg-success-light mr-2" >查看论文 <i
                                                     class="fas fa-pen"></i></a><a href="#"
                                                                                   class="btn btn-sm bg-danger-light" data-toggle="modal" data-target="#conModal">评分 <i
                                                     class="fas fa-pen"></i></a></div>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td>PRE2213</td>
-                                        <td><h2 class="table-avatar"><a href="student-details.html"
-                                                                        class="avatar avatar-sm mr-2"><img
-                                                class="avatar-img rounded-circle" src="static/picture/avatar-03.jpg"
-                                                alt="User Image"></a><a href="student-details.html">Malynne</a></h2>
-                                        </td>
-                                        <td>8 A</td>
-                                        <td>3 June 2010</td>
-                                        <td>Fields Malynne</td>
-                                        <td>242 362 3100</td>
-                                        <td>Bacardi Rd P.O. Box N-4880,New Providence</td>
-                                        <td class="text-right">
-                                            <div class="actions"><a href="edit-student.html"
-                                                                    class="btn btn-sm bg-success-light mr-2"><i
-                                                    class="fas fa-pen"></i></a><a href="#"
-                                                                                  class="btn btn-sm bg-danger-light"><i
-                                                    class="fas fa-trash"></i></a></div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>PRE2143</td>
-                                        <td><h2 class="table-avatar"><a href="student-details.html"
-                                                                        class="avatar avatar-sm mr-2"><img
-                                                class="avatar-img rounded-circle" src="static/picture/avatar-02.jpg"
-                                                alt="User Image"></a><a href="student-details.html">Levell Scott</a>
-                                        </h2></td>
-                                        <td>10 A</td>
-                                        <td>12 Apr 2002</td>
-                                        <td>Jeffrey Scott</td>
-                                        <td>026 7318 4366</td>
-                                        <td>P.O. Box:41,Gaborone</td>
-                                        <td class="text-right">
-                                            <div class="actions"><a href="edit-student.html"
-                                                                    class="btn btn-sm bg-success-light mr-2"><i
-                                                    class="fas fa-pen"></i></a><a href="#"
-                                                                                  class="btn btn-sm bg-danger-light"><i
-                                                    class="fas fa-trash"></i></a></div>
-                                        </td>
-                                    </tr>
+                                    {% endfor %}
                                     </tbody>
                                 </table>
                             </div>
@@ -159,7 +120,8 @@
                         </div>
                         <div class="modal-body">
                             <form method="post" id="tuiform" action="/teacher/stulist">
-                                <input type="hidden" id="row_id" name="rowid">
+                                <input type="hidden" id="row_id" name="row_id">
+                                <label>得分</label><input name="score">
                             </form>
                         </div>
                         <div class="modal-footer">
@@ -185,10 +147,9 @@
         cancelBtns[i].addEventListener('click', function() {
             // 获取这一行的数据
             var row = this.parentNode.parentNode.parentNode;
-            var projectId = row.cells[0].innerText; // 假设项目编号在第一个单元格
-            console.log(projectId)
-            // 将项目编号设置为隐藏输入字段的值
-            document.getElementById('row_id').value = projectId;
+            var data1 = row.cells[0].innerText;
+
+            document.getElementById('row_id').value = data1;
 
             // 提交表单
 

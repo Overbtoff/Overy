@@ -64,23 +64,25 @@
                                 <div class="media mt-3"><img src="static/picture/shuaiqideshasha.jpg" class="mr-3" alt="...">
                                     <div class="media-body">
                                         <ul>
-                                            <li><span class="title-span">姓名:</span><span class="info-span">{{item[0]}}</span>
+                                            <li><span class="title-span">学号:</span><span class="info-span">{{item[0]}}</span>
                                             </li>
-                                            <li><span class="title-span">性别:</span><span class="info-span">{{item[1]}}</span></li>
-                                            <li><span class="title-span">专业:</span><span class="info-span">{{item[2]}}</span>
+                                            <li><span class="title-span">姓名:</span><span class="info-span">{{item[1]}}</span>
                                             </li>
-                                            <li><span class="title-span">联系方式:</span><span class="info-span">{{item[3]}}</span>
+                                            <li><span class="title-span">性别:</span><span class="info-span">{{item[2]}}</span></li>
+                                            <li><span class="title-span">院系:</span><span class="info-span">{{item[3]}}</span>
                                             </li>
-                                            <li><span class="title-span">邮箱:</span><span class="info-span">{{item[4]}}</span>
+                                            <li><span class="title-span">专业:</span><span class="info-span">{{item[4]}}</span>
+                                            </li>
+                                            <li><span class="title-span">班级:</span><span class="info-span">{{item[5]}}</span>
+                                            </li>
+                                            <li><span class="title-span">联系方式:</span><span class="info-span">{{item[6]}}</span>
+                                            </li>
+                                            <li><span class="title-span">邮箱:</span><span class="info-span">{{item[7]}}</span>
                                             </li>
 
                                         </ul>
                                     </div>
                                 </div>
-                                <div class="row mt-3">
-                                    <div class="col-md-12"><p>沙沙我为你欢呼~~~~~~~~~~~~~~~~~~~~~~~~~~~~~.</p></div>
-                                </div>
-
                             </div>
                         </div>
                     </div>
@@ -127,8 +129,7 @@
                                         <td>{{item[6]}}</td>
                                         <td class="text-right">
                                             <div class="actions"><a href="#" class="btn btn-sm bg-success-light mr-2" data-toggle="modal" data-target="#subModal">提交论文  <i
-                                                    class="fas fa-pen"></i></a><a href="#" class="btn btn-sm bg-success-light mr-2" data-toggle="modal" data-target="#conModal">退选  <i
-                                                    class="fas fa-trash"></i></a></div>
+                                                    class="fas fa-pen"></i></a></div>
                                         </td>
                                     </tr>
                                     {% endfor %}
@@ -157,30 +158,13 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
-                            <button type="button" class="btn btn-primary" onclick="submitForm()">提交</button>
+                            <button type="button" class="btn btn-primary" onclick="document.getElementById('subform').submit()">提交</button>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="modal fade" id="conModal" tabindex="-1" role="dialog" aria-labelledby="conModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="conModalLabel">退选确认</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true"></span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
-                            <a class="btn btn-primary" href="{{url_for('student.resign')}}">确认</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
 
             <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
@@ -197,13 +181,13 @@
                                 <label>姓名</label> <input name="name" value={{item[0]}}>
                                 <label>性别</label>
                                 <select name="sex">
-                                    <option value="{{item[1]}}" selected>{{item[1]}}</option>
+                                    <option value="{{item[2]}}" selected>{{item[2]}}</option>
                                     <option value="女">女</option>
                                     <option value="男">男</option>
                                 </select>
-                                <label>专业</label> <input name="subject" value={{item[2]}}>
-                                <label>联系方式</label> <input name="number" value={{item[3]}}>
-                                <label>邮箱</label> <input name="email" value={{item[4]}}>
+                                <label>专业</label> <input name="subject" value={{item[3]}}>
+                                <label>联系方式</label> <input name="number" value={{item[4]}}>
+                                <label>邮箱</label> <input name="email" value={{item[5]}}>
                             </form>
                             {% endfor %}
                         </div>
